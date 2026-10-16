@@ -1,935 +1,132 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0b0b0d">
-  <meta name="description" content="Frrag - معرض أعمال التصوير الفوتوغرافي وصناعة الفيديو والمونتاج والتلوين السينمائي.">
-  <title>Frrag | Photography & Film Production</title>
-
-  <style>
-    :root {
-      --bg: #0b0b0d;
-      --surface: #141417;
-      --surface-card: #1c1c21;
-      --text: #f6f4ef;
-      --muted: #aaa8ad;
-      --gold: #d9b77b;
-      --gold-hover: #edd19d;
-      --line: rgba(255,255,255,.12);
-      --radius: 18px;
-      --shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.8;
-      overflow-x: hidden;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    button, input, select { font: inherit; color: inherit; }
-    img { width: 100%; display: block; }
-    section { padding: 90px 0; }
-
-    .container { width: min(1120px, 90%); margin: auto; }
-
-    .eyebrow {
-      color: var(--gold);
-      font-size: 12px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      font-weight: 700;
-      display: inline-block;
-    }
-
-    h2 {
-      font-size: clamp(28px, 5vw, 43px);
-      line-height: 1.3;
-      margin-bottom: 16px;
-    }
-
-    .section-intro {
-      color: var(--muted);
-      max-width: 580px;
-      margin-bottom: 38px;
-    }
-
-    .accent { color: var(--gold); }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 14px 28px;
-      border: 1px solid var(--gold);
-      border-radius: 8px;
-      background: var(--gold);
-      color: #17130d;
-      font-weight: 700;
-      transition: all .25s ease;
-      cursor: pointer;
-    }
-
-    .btn:hover { background: transparent; color: var(--gold); transform: translateY(-2px); }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-      border-color: var(--line);
-    }
-
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-
-    /* Navigation */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(11,11,13,.92);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--line);
-    }
-
-    nav {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .logo {
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: 3px;
-    }
-
-    .logo span { color: var(--gold); }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 26px;
-      color: #d0cdd0;
-      font-size: 14px;
-    }
-
-    .nav-links a:hover { color: var(--gold); }
-
-    .menu-btn {
-      display: none;
-      background: none;
-      color: white;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 5px 12px;
-      font-size: 23px;
-      cursor: pointer;
-    }
-
-    /* Hero Section */
-    .hero {
-      min-height: 80vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      background:
-        linear-gradient(270deg, rgba(11,11,13,.98) 0%, rgba(11,11,13,.82) 42%, rgba(11,11,13,.35) 100%),
-        url("https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=2000&q=85")
-        center/cover no-repeat;
-    }
-
-    .hero-content { max-width: 670px; padding: 75px 0; }
-
-    .hero h1 {
-      font-size: clamp(40px, 7vw, 75px);
-      line-height: 1.18;
-      margin-bottom: 22px;
-      letter-spacing: -1px;
-    }
-
-    .hero p {
-      max-width: 520px;
-      color: #d0cdd0;
-      font-size: 18px;
-      margin-bottom: 32px;
-    }
-
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
-
-    .hero-note {
-      margin-top: 48px;
-      padding-top: 20px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 13px;
-      display: flex;
-      gap: 20px;
-    }
-
-    /* Before / After Slider Section */
-    .grading-section { background: #0f0f12; }
-
-    .slider-container {
-      position: relative;
-      width: 100%;
-      height: 480px;
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      user-select: none;
-    }
-
-    .slider-img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .img-before {
-      z-index: 1;
-      filter: grayscale(80%) contrast(85%) brightness(90%); /* Simulating RAW Footage */
-    }
-
-    .img-after {
-      z-index: 2;
-      width: 50%;
-      border-left: 2px solid var(--gold);
-    }
-
-    .slider-handle {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      width: 4px;
-      background: var(--gold);
-      z-index: 3;
-      transform: translateX(-50%);
-      cursor: ew-resize;
-    }
-
-    .handle-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 44px;
-      height: 44px;
-      background: var(--gold);
-      color: #111;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 16px;
-      box-shadow: 0 0 15px rgba(217,183,123,0.6);
-    }
-
-    .badge {
-      position: absolute;
-      top: 15px;
-      padding: 6px 14px;
-      background: rgba(0,0,0,0.75);
-      backdrop-filter: blur(5px);
-      border-radius: 20px;
-      font-size: 12px;
-      color: var(--text);
-      z-index: 4;
-      border: 1px solid var(--line);
-    }
-    .badge-before { right: 15px; }
-    .badge-after { left: 15px; border-color: var(--gold); color: var(--gold); }
-
-    /* About Section */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 55px;
-      align-items: center;
-    }
-
-    .about-image {
-      height: 430px;
-      object-fit: cover;
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-    }
-
-    .about-copy p {
-      color: var(--muted);
-      margin: 15px 0;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .stat {
-      padding: 18px;
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-    }
-
-    .stat strong { display: block; color: var(--gold); font-size: 24px; }
-    .stat span { color: var(--muted); font-size: 13px; }
-
-    /* Portfolio Section */
-    #portfolio { background: #0e0e11; }
-
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 30px;
-    }
-
-    .filter-btn {
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      padding: 9px 22px;
-      color: var(--muted);
-      background: transparent;
-      cursor: pointer;
-      transition: .25s;
-    }
-
-    .filter-btn.active, .filter-btn:hover {
-      color: #17130d;
-      background: var(--gold);
-      border-color: var(--gold);
-      font-weight: 600;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .work-card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      overflow: hidden;
-      transition: transform .3s, border-color .3s;
-    }
-
-    .work-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(217,183,123,.65);
-    }
-
-    .work-card[hidden] { display: none; }
-
-    .work-image-wrap { overflow: hidden; position: relative; height: 250px; }
-
-    .work-image {
-      height: 100%;
-      object-fit: cover;
-      transition: transform .5s ease;
-    }
-
-    .work-card:hover .work-image { transform: scale(1.06); }
-
-    .work-label {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: rgba(0,0,0,.75);
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 11px;
-      border: 1px solid var(--line);
-    }
-
-    .work-info { padding: 18px; }
-    .work-info h3 { font-size: 18px; margin-bottom: 6px; }
-    .work-info p { color: var(--muted); font-size: 13px; }
-
-    .preview-btn {
-      background: none;
-      border: 0;
-      color: var(--gold);
-      margin-top: 14px;
-      padding: 0;
-      font-size: 13px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    /* Services Section */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .service-card {
-      padding: 32px 24px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: linear-gradient(145deg, #16161a, #101013);
-      transition: border-color .3s;
-    }
-
-    .service-card:hover { border-color: var(--gold); }
-    .service-icon { font-size: 36px; margin-bottom: 18px; }
-    .service-card h3 { font-size: 21px; margin-bottom: 12px; }
-    .service-card p { color: var(--muted); font-size: 14px; line-height: 1.7; }
-
-    /* Interactive Cost Estimator */
-    .estimator-section { background: #121216; }
-
-    .estimator-box {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 35px;
-      box-shadow: var(--shadow);
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .form-group { margin-bottom: 22px; }
-    .form-group label { display: block; margin-bottom: 8px; font-size: 14px; color: var(--text); }
-
-    .form-control {
-      width: 100%;
-      padding: 12px 16px;
-      background: #0b0b0d;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      outline: none;
-    }
-
-    .form-control:focus { border-color: var(--gold); }
-
-    .calc-result {
-      margin-top: 25px;
-      padding: 20px;
-      background: rgba(217,183,123,0.08);
-      border: 1px dashed var(--gold);
-      border-radius: 12px;
-      text-align: center;
-    }
-
-    .calc-price { font-size: 28px; color: var(--gold); font-weight: bold; margin: 8px 0; }
-
-    /* Contact Section */
-    .contact-box {
-      text-align: center;
-      padding: 60px 24px;
-      border: 1px solid rgba(217,183,123,.3);
-      border-radius: 24px;
-      background: radial-gradient(ellipse at top, #241d13, #111113 70%);
-    }
-
-    .contact-box p { color: var(--muted); max-width: 530px; margin: 0 auto 28px; }
-    .contact-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
-
-    /* Floating WhatsApp Button */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 25px;
-      left: 25px;
-      width: 56px;
-      height: 56px;
-      background: #25d366;
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-      z-index: 99;
-      transition: transform .3s;
-    }
-    .whatsapp-float:hover { transform: scale(1.1); }
-
-    /* Footer */
-    footer { padding: 35px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
-    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
-    .socials { display: flex; flex-wrap: wrap; gap: 18px; }
-    .socials a:hover { color: var(--gold); }
-
-    /* Lightbox Modal */
-    .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      background: rgba(0,0,0,.94);
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .lightbox.open { display: flex; }
-    .lightbox img { max-width: 90%; max-height: 82vh; object-fit: contain; border-radius: 8px; }
-    .close-lightbox {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      color: white;
-      background: #222;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      width: 44px;
-      height: 44px;
-      font-size: 25px;
-      cursor: pointer;
-    }
-
-    @media (max-width: 800px) {
-      .menu-btn { display: block; }
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 76px; right: 0; left: 0;
-        padding: 25px 5%;
-        background: #111114;
-        border-bottom: 1px solid var(--line);
-        flex-direction: column;
-        align-items: stretch;
-        gap: 14px;
-      }
-      .nav-links.open { display: flex; }
-      .about-grid { grid-template-columns: 1fr; gap: 30px; }
-      .gallery { grid-template-columns: repeat(2, 1fr); }
-      .services-grid { grid-template-columns: 1fr; }
-      .slider-container { height: 320px; }
-    }
-
-    @media (max-width: 520px) {
-      .gallery { grid-template-columns: 1fr; }
-      .footer-inner { flex-direction: column; align-items: flex-start; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Farag | Dark Cinema Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #0b0b0b;
+            --card-bg: #141414;
+            --accent-color: #e50914;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            color: var(--text-main);
+        }
+        header h1 span {
+            color: var(--accent-color);
+        }
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        .bio-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+            margin-bottom: 30px;
+            border: 1px solid #222;
+        }
+        .bio-card h2 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        .bio-card p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .btn-whatsapp {
+            background-color: #25d366;
+            color: #fff;
+        }
+        .btn-insta {
+            background: linear-gradient(45deg, #405de6, #5b51db, #833ab4, #c13584, #fd1d1d, #fcaf45);
+            color: #fff;
+        }
+        .btn-tiktok {
+            background-color: #000;
+            color: #fff;
+            border: 1px solid #333;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            opacity: 0.9;
+        }
+        footer {
+            margin-top: 40px;
+            color: #555;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
-
 <body>
 
-  <!-- Header & Navigation -->
-  <header>
-    <nav class="container" aria-label="القائمة الرئيسية">
-      <a href="#home" class="logo">FRRAG<span>.</span></a>
-      <button class="menu-btn" id="menuBtn" aria-label="فتح القائمة">☰</button>
-      <div class="nav-links" id="navLinks">
-        <a href="#home">الرئيسية</a>
-        <a href="#grading">التلوين السينمائي</a>
-        <a href="#about">من أنا</a>
-        <a href="#portfolio">أعمالي</a>
-        <a href="#services">خدماتي</a>
-        <a href="#estimator">حاسبة التكلفة</a>
-        <a href="#contact" class="btn">تواصل معايا</a>
-      </div>
-    </nav>
-  </header>
+    <div class="container">
+        <header>
+            <h1>أحمد <span>فرج</span></h1>
+            <p>مصور سينمائي & مونتير فيديو | Dark Cinema Portfolio</p>
+        </header>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-      <div class="container">
-        <div class="hero-content">
-          <div class="eyebrow">Photography · Videography · Color Grading</div>
-          <h1>كل صورة<br>وراها <span class="accent">حكاية.</span></h1>
-          <p>أنا Frrag، صانع محتوى بصري ومونتير احترافي. بحوّل اللحظات العادية والمشاهد الخام إلى حكايات بصرية سينمائية تترك أثراً.</p>
-          <div class="hero-actions">
-            <a href="#portfolio" class="btn">استكشف الأعمال ↙</a>
-            <a href="#estimator" class="btn btn-outline">احسب تكلفة مشروعك</a>
-          </div>
-          <div class="hero-note">
-            <span>• تصوير احترافي</span>
-            <span>• مونتاج وتلوين</span>
-            <span>• إخراج Reels</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Before / After Color Grading Slider Section -->
-    <section class="grading-section" id="grading">
-      <div class="container">
-        <div class="eyebrow">Color Grading Magic</div>
-        <h2>سحر التلوين <span class="accent">السينمائي</span></h2>
-        <p class="section-intro">اسحب الشريط للتنقل بين المشهد الخام (RAW) وقبل التعديل، وبين النتيجة النهائية بعد معالجة الألوان والإضاءة.</p>
-
-        <div class="slider-container" id="colorSlider">
-          <!-- Before (RAW) Image -->
-          <img src="https://images.unsplash.com/photo-1518173946687-a4c8a383392e?auto=format&fit=crop&w=1600&q=80" class="slider-img img-before" alt="Raw Footage">
-          <span class="badge badge-before">قبل التعديل (RAW)</span>
-
-          <!-- After (Color Graded) Image -->
-          <div class="img-after" id="afterWrap">
-            <img src="https://images.unsplash.com/photo-1518173946687-a4c8a383392e?auto=format&fit=crop&w=1600&q=80" class="slider-img" alt="Color Graded">
-          </div>
-          <span class="badge badge-after">بعد التلوين السينمائي</span>
-
-          <!-- Handle -->
-          <div class="slider-handle" id="sliderHandle">
-            <div class="handle-button">↔</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-      <div class="container about-grid">
-        <div>
-          <img class="about-image" src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=1000&q=85" alt="كاميرا تصوير فوتوغرافي" loading="lazy">
-        </div>
-        <div class="about-copy">
-          <div class="eyebrow">About Me</div>
-          <h2>وراء كل لقطة<br><span class="accent">إحساس وفكر.</span></h2>
-          <p>التصوير والمونتاج بالنسبة لي مش مجرد تشغيل كاميرا أو قص فيديوهات، لكن عملية إبداعية كاملة لنقل الشعور والقصة بأعلى جودة بصرية.</p>
-          <p>أعمل على استخدام أحدث تقنيات المونتاج والتلوين وإخراج المحتوى ليتناسب مع مختلف المنصات ويحقق أعلى تفاعل.</p>
-
-          <div class="stats">
-            <div class="stat">
-              <strong>Photography</strong>
-              <span>تصوير فوتوغرافي</span>
+        <section class="bio-card">
+            <h2>أهلاً بك في عالمي البصري</h2>
+            <p>أقوم بتحويل اللحظات والأفكار إلى قصص بصرية ومحتوى سينمائي استثنائي. تواصل معي لتنفيذ مشروعك القادم.</p>
+            
+            <div class="btn-group">
+                <!-- زر الواتساب المباشر -->
+                <a href="https://wa.me/201015130014" target="_blank" class="btn btn-whatsapp">تواصل عبر الواتساب</a>
+                
+                <!-- انستجرام -->
+                <a href="https://www.instagram.com/ahmed_farag_s" target="_blank" class="btn btn-insta">انستجرام</a>
+                
+                <!-- تيك توك -->
+                <a href="https://www.tiktok.com/@ahmad_farag1" target="_blank" class="btn btn-tiktok">تيك توك</a>
             </div>
-            <div class="stat">
-              <strong>Videography</strong>
-              <span>صناعة الفيديو</span>
-            </div>
-            <div class="stat">
-              <strong>Color Grading</strong>
-              <span>معالجة وتلوين</span>
-            </div>
-            <div class="stat">
-              <strong>Reels & Social</strong>
-              <span>محتوى عمودي</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio">
-      <div class="container">
-        <div class="eyebrow">Selected Work</div>
-        <h2>أعمال <span class="accent">مختارة</span></h2>
-        <p class="section-intro">تصفح أقسام الأعمال المختلفة واضغط على أيا منها لمشاهدته بشكل مكبّر.</p>
-
-        <div class="filters">
-          <button class="filter-btn active" data-filter="all">الكل</button>
-          <button class="filter-btn" data-filter="photo">تصوير</button>
-          <button class="filter-btn" data-filter="video">فيديو ومونتاج</button>
-          <button class="filter-btn" data-filter="creative">إبداعي</button>
-        </div>
-
-        <div class="gallery">
-          <article class="work-card" data-category="photo">
-            <div class="work-image-wrap">
-              <img class="work-image" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=850&q=80" alt="طبيعة" loading="lazy">
-              <span class="work-label">تصوير</span>
-            </div>
-            <div class="work-info">
-              <h3>سحر الطبيعة</h3>
-              <p>تصوير فوتوغرافي · إضاءة طبيعية</p>
-              <button class="preview-btn" type="button">تكبير الصورة ↗</button>
-            </div>
-          </article>
-
-          <article class="work-card" data-category="video">
-            <div class="work-image-wrap">
-              <img class="work-image" src="https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=850&q=80" alt="إخراج سينمائي" loading="lazy">
-              <span class="work-label">فيديو</span>
-            </div>
-            <div class="work-info">
-              <h3>صناعة المشهد</h3>
-              <p>فيديو · سرد بصري</p>
-              <button class="preview-btn" type="button">تكبير الصورة ↗</button>
-            </div>
-          </article>
-
-          <article class="work-card" data-category="creative">
-            <div class="work-image-wrap">
-              <img class="work-image" src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=850&q=80" alt="لقطة سينمائية" loading="lazy">
-              <span class="work-label">إبداعي</span>
-            </div>
-            <div class="work-info">
-              <h3>حكاية بالضوء</h3>
-              <p>مشهد إبداعي · ألوان سينمائية</p>
-              <button class="preview-btn" type="button">تكبير الصورة ↗</button>
-            </div>
-          </article>
-
-          <article class="work-card" data-category="photo">
-            <div class="work-image-wrap">
-              <img class="work-image" src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=850&q=80" alt="ضوء الشمس" loading="lazy">
-              <span class="work-label">تصوير</span>
-            </div>
-            <div class="work-info">
-              <h3>إشراقة الصباح</h3>
-              <p>تصوير بورتريه · طبيعة</p>
-              <button class="preview-btn" type="button">تكبير الصورة ↗</button>
-            </div>
-          </article>
-
-          <article class="work-card" data-category="video">
-            <div class="work-image-wrap">
-              <img class="work-image" src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=850&q=80" alt="مونتاج" loading="lazy">
-              <span class="work-label">مونتاج</span>
-            </div>
-            <div class="work-info">
-              <h3>من الفكرة للإخراج</h3>
-              <p>مونتاج · صناعة أفلام</p>
-              <button class="preview-btn" type="button">تكبير الصورة ↗</button>
-            </div>
-          </article>
-
-          <article class="work-card" data-category="creative">
-            <div class="work-image-wrap">
-              <img class="work-image" src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=850&q=80" alt="كاميرا" loading="lazy">
-              <span class="work-label">إبداعي</span>
-            </div>
-            <div class="work-info">
-              <h3>خلف الكواليس</h3>
-              <p>معدات احترافية · صناعة محتوى</p>
-              <button class="preview-btn" type="button">تكبير الصورة ↗</button>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services">
-      <div class="container">
-        <div class="eyebrow">Services</div>
-        <h2>ماذا <span class="accent">أقدم؟</span></h2>
-        <p class="section-intro">خدمات متكاملة في الإنتاج البصري والمونتاج لضمان تقديم مشروعك ببهجة واحترافية.</p>
-
-        <div class="services-grid">
-          <article class="service-card">
-            <div class="service-icon">📷</div>
-            <h3>التصوير الفوتوغرافي</h3>
-            <p>جلسات تصوير احترافية للمنتجات، الأشخاص، والفعاليات مع اهتمام دقيق بضبط زوايا الإضاءة والتكوين.</p>
-          </article>
-
-          <article class="service-card">
-            <div class="service-icon">🎬</div>
-            <h3>المونتاج والتلوين</h3>
-            <p>قص وتحرير الفيديو، ضبط الإيقاع، المؤثرات الصوتية، والتلوين السينمائي المتقدم لإبراز جمال كل مشهد.</p>
-          </article>
-
-          <article class="service-card">
-            <div class="service-icon">📱</div>
-            <h3>إنتاج Reels & Shorts</h3>
-            <p>صناعة مقاطع فيديو رأسية سريعة وجذابة مخصصة لمنصات التواصل الاجتماعي لزيادة التفاعل والوصول.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Interactive Cost Estimator -->
-    <section class="estimator-section" id="estimator">
-      <div class="container">
-        <div style="text-align: center;">
-          <div class="eyebrow">Cost Estimator</div>
-          <h2>حاسبة التكلفة <span class="accent">التقديرية</span></h2>
-          <p class="section-intro" style="margin: 0 auto 35px;">اختر تفاصيل مشروعك لتعرف التكلفة التقديرية وتطلب الخدمة مباشرة عبر واتساب.</p>
-        </div>
-
-        <div class="estimator-box">
-          <div class="form-group">
-            <label for="serviceType">نوع الخدمة المطلوب:</label>
-            <select id="serviceType" class="form-control">
-              <option value="photo">جلسة تصوير فوتوغرافي (Photography)</option>
-              <option value="editing">مونتاج وتلوين فيديو (Editing & Color Grading)</option>
-              <option value="reels">إنتاج فيديو Reels / Shorts (سريع)</option>
-              <option value="full">تغطية فيديو وتصوير كاملة (Full Production)</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="quantity">الكمية (عدد الساعات / عدد المقاطع):</label>
-            <input type="number" id="quantity" class="form-control" value="1" min="1" max="50">
-          </div>
-
-          <div class="calc-result">
-            <div>التكلفة التقديرية المبدئية:</div>
-            <div class="calc-price" id="totalPrice">0 ج.م</div>
-            <p style="font-size: 12px; color: var(--muted);">* السعر النهائي قد يختلف بناءً على التفاصيل الإضافية والتجهيزات.</p>
-          </div>
-
-          <div style="text-align: center; margin-top: 20px;">
-            <button type="button" class="btn" id="sendEstimatorBtn" style="width: 100%;">اطلب المشروع بالسعر ده عبر واتساب 🚀</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-      <div class="container">
-        <div class="contact-box">
-          <div class="eyebrow">Let's Work Together</div>
-          <h2>جاهز لبدء مشروعك؟ <span class="accent">خلينا نتكلم.</span></h2>
-          <p>سواء كان لديك فكرة واضحة أو تحتاج لمساعدة في تحديد الشكل البصري المناسب، يسعدني التواصل معك.</p>
-
-          <div class="contact-actions">
-            <a class="btn" href="https://wa.me/201000000000" target="_blank" rel="noopener">تواصل عبر واتساب ↗</a>
-            <a class="btn btn-outline" href="mailto:contact@frrag.com">إرسال بريد إلكتروني</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/201000000000" class="whatsapp-float" target="_blank" rel="noopener" aria-label="واتساب">💬</a>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container footer-inner">
-      <a href="#home" class="logo">FRRAG<span>.</span></a>
-      <div class="socials">
-        <a href="https://instagram.com" target="_blank">Instagram ↗</a>
-        <a href="https://facebook.com" target="_blank">Facebook ↗</a>
-        <a href="https://youtube.com" target="_blank">YouTube ↗</a>
-        <a href="https://tiktok.com" target="_blank">TikTok ↗</a>
-      </div>
-      <p>© <span id="year"></span> FRRAG. جميع الحقوق محفوظة.</p>
+        <footer>
+            <p>&copy; 2026 Ahmed Farag. All Rights Reserved.</p>
+        </footer>
     </div>
-  </footer>
 
-  <!-- Lightbox Preview Modal -->
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
-    <button class="close-lightbox" id="closeLightbox">×</button>
-    <img id="lightboxImage" src="" alt="Preview">
-  </div>
-
-  <script>
-    // Navigation Menu Toggle
-    const menuBtn = document.getElementById("menuBtn");
-    const navLinks = document.getElementById("navLinks");
-
-    menuBtn.addEventListener("click", () => {
-      const isOpen = navLinks.classList.toggle("open");
-      menuBtn.textContent = isOpen ? "×" : "☰";
-    });
-
-    navLinks.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => navLinks.classList.remove("open"));
-    });
-
-    // Before/After Slider Interaction
-    const sliderContainer = document.getElementById('colorSlider');
-    const afterWrap = document.getElementById('afterWrap');
-    const sliderHandle = document.getElementById('sliderHandle');
-    let isDragging = false;
-
-    function setSliderPosition(x) {
-      const rect = sliderContainer.getBoundingClientRect();
-      let position = x - rect.left;
-      if (position < 0) position = 0;
-      if (position > rect.width) position = rect.width;
-      
-      const percentage = (position / rect.width) * 100;
-      afterWrap.style.width = `${100 - percentage}%`;
-      sliderHandle.style.left = `${position}px`;
-    }
-
-    sliderContainer.addEventListener('mousedown', (e) => { isDragging = true; setSliderPosition(e.clientX); });
-    window.addEventListener('mouseup', () => isDragging = false);
-    window.addEventListener('mousemove', (e) => { if (isDragging) setSliderPosition(e.clientX); });
-
-    sliderContainer.addEventListener('touchstart', (e) => { isDragging = true; setSliderPosition(e.touches[0].clientX); });
-    window.addEventListener('touchend', () => isDragging = false);
-    window.addEventListener('touchmove', (e) => { if (isDragging) setSliderPosition(e.touches[0].clientX); });
-
-    // Portfolio Category Filtering
-    const filterButtons = document.querySelectorAll(".filter-btn");
-    const workCards = document.querySelectorAll(".work-card");
-
-    filterButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        const filter = button.dataset.filter;
-        filterButtons.forEach(btn => btn.classList.remove("active"));
-        button.classList.add("active");
-
-        workCards.forEach(card => {
-          card.hidden = filter !== "all" && card.dataset.category !== filter;
-        });
-      });
-    });
-
-    // Interactive Cost Estimator Calculation
-    const serviceType = document.getElementById('serviceType');
-    const quantity = document.getElementById('quantity');
-    const totalPriceDisplay = document.getElementById('totalPrice');
-    const sendEstimatorBtn = document.getElementById('sendEstimatorBtn');
-
-    const prices = {
-      photo: 800,   // لكل سيشن/ساعة
-      editing: 600, // لكل دقيقة/فيديو
-      reels: 400,   // لكل ريلز
-      full: 1500    // لكل ساعة تغطية شاملة
-    };
-
-    function calculateTotal() {
-      const unitPrice = prices[serviceType.value] || 0;
-      const qty = parseInt(quantity.value) || 1;
-      const total = unitPrice * qty;
-      totalPriceDisplay.textContent = `${total.toLocaleString('ar-EG')} ج.م`;
-      return total;
-    }
-
-    serviceType.addEventListener('change', calculateTotal);
-    quantity.addEventListener('input', calculateTotal);
-    calculateTotal();
-
-    sendEstimatorBtn.addEventListener('click', () => {
-      const selectedService = serviceType.options[serviceType.selectedIndex].text;
-      const qty = quantity.value;
-      const total = calculateTotal();
-      
-      const message = `أهلاً Frrag! 👋%0Aأنا مهتم بخدمة: *${selectedService}*%0Aالكمية/العدد: *${qty}*%0Aالتكلفة التقديرية: *${total} ج.م*%0Aحابب أعرف تفاصيل أكثر ونتفق على المعاد.`;
-      window.open(`https://wa.me/201000000000?text=${message}`, '_blank');
-    });
-
-    // Lightbox Image Preview
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImage = document.getElementById("lightboxImage");
-    const closeLightbox = document.getElementById("closeLightbox");
-
-    document.querySelectorAll(".preview-btn").forEach(button => {
-      button.addEventListener("click", () => {
-        const image = button.closest(".work-card").querySelector("img");
-        lightboxImage.src = image.src;
-        lightbox.classList.add("open");
-      });
-    });
-
-    closeLightbox.addEventListener("click", () => lightbox.classList.remove("open"));
-    lightbox.addEventListener("click", (e) => { if (e.target === lightbox) lightbox.classList.remove("open"); });
-
-    // Current Year Update
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>

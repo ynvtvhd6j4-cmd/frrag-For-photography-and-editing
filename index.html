@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أحمد فرج | Visuals & Interiors</title>
-    <!-- استدعاء خط Cairo الاحترافي بأوزان متعدده -->
+    <title>أحمد فرج | Visuals & Interior Design</title>
+    <!-- استدعاء خط Cairo الاحترافي -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -44,10 +44,10 @@
         /* الهيدر السينمائي الفاخر */
         header {
             text-align: center;
-            padding: 40px 20px 25px;
-            background: linear-gradient(180deg, rgba(229, 9, 20, 0.18) 0%, rgba(8, 8, 10, 0) 100%);
+            padding: 35px 20px 25px;
+            background: linear-gradient(180deg, rgba(229, 9, 20, 0.2) 0%, rgba(8, 8, 10, 0) 100%);
             border-radius: 24px;
-            border: 1px solid rgba(229, 9, 20, 0.25);
+            border: 1px solid rgba(229, 9, 20, 0.3);
             margin-bottom: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
@@ -62,11 +62,10 @@
             font-size: 0.85rem;
             font-weight: 800;
             margin-bottom: 12px;
-            letter-spacing: 0.5px;
         }
 
         header h1 {
-            font-size: 2.4rem;
+            font-size: 2.3rem;
             font-weight: 900;
             margin-bottom: 6px;
             color: #ffffff;
@@ -75,7 +74,7 @@
 
         header p {
             color: var(--text-muted);
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 600;
         }
 
@@ -107,19 +106,19 @@
             flex-shrink: 0;
         }
 
-        .filter-btn.active, .filter-btn:active {
+        .filter-btn.active {
             background: var(--accent-red);
             color: #ffffff;
             border-color: var(--accent-red);
             box-shadow: 0 4px 15px var(--accent-glow);
         }
 
-        /* المعرض الشبكي للصور والفيديوهات */
+        /* عناوين المعرض */
         .section-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin: 20px 0 15px;
+            margin: 25px 0 15px;
             padding-bottom: 8px;
             border-bottom: 2px solid var(--card-border);
         }
@@ -135,6 +134,7 @@
             font-weight: 700;
         }
 
+        /* المعرض الشبكي */
         .gallery-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -148,7 +148,6 @@
             border-radius: 18px;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            transition: transform 0.2s ease;
         }
 
         .gallery-card img, .gallery-card video {
@@ -184,19 +183,19 @@
             line-height: 1.5;
         }
 
-        /* أزرار التواصل السريع عبر الواتساب */
+        /* صندوق التواصل بالواتساب */
         .contact-box {
-            background: linear-gradient(135deg, rgba(37, 211, 102, 0.1) 0%, rgba(18, 18, 23, 1) 100%);
-            border: 1px solid rgba(37, 211, 102, 0.25);
+            background: linear-gradient(135deg, rgba(37, 211, 102, 0.12) 0%, rgba(18, 18, 23, 1) 100%);
+            border: 1px solid rgba(37, 211, 102, 0.3);
             border-radius: 20px;
-            padding: 22px;
+            padding: 24px;
             text-align: center;
             margin-top: 30px;
             margin-bottom: 20px;
         }
 
         .contact-box h3 {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-weight: 800;
             margin-bottom: 8px;
         }
@@ -219,12 +218,7 @@
             font-size: 1.1rem;
             font-weight: 800;
             text-decoration: none;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
-            transition: transform 0.2s ease;
-        }
-
-        .btn-whatsapp:active {
-            transform: scale(0.98);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
         }
 
         footer {
@@ -240,67 +234,141 @@
 <body>
 
     <div class="container">
-        <!-- الهيدر السينمائي -->
+        <!-- الهيدر الرئيسي -->
         <header>
             <span class="badge">DARK CINEMA PORTFOLIO</span>
             <h1>أحمد فرج</h1>
             <p>صنع المحتوى البصري • تصوير ومونتاج • تصاميم ديكورات</p>
         </header>
 
-        <!-- أزرار الفلترة السريعة -->
+        <!-- أزرار الفلترة -->
         <div class="filter-container">
-            <button class="filter-btn active" onclick="filterGallery('all')">🌟 كل الأعمال</button>
-            <button class="filter-btn" onclick="filterGallery('media')">🎬 تصوير ومونتاج</button>
-            <button class="filter-btn" onclick="filterGallery('interiors')">🏛️ ديكورات وتصاميم</button>
+            <button class="filter-btn active" onclick="filterGallery('all', this)">🌟 كل الأعمال (10)</button>
+            <button class="filter-btn" onclick="filterGallery('media', this)">🎬 تصوير ومونتاج</button>
+            <button class="filter-btn" onclick="filterGallery('interiors', this)">🏛️ ديكورات وتصاميم</button>
         </div>
 
-        <!-- المعرض التفاعلي -->
         <div class="section-header">
-            <h2>معرض الأعمال المختارة</h2>
-            <span>FEATURED WORK</span>
+            <h2>معرض الأعمال الشامل</h2>
+            <span>10 FEATURED WORKS</span>
         </div>
 
         <div class="gallery-grid" id="galleryGrid">
-            <!-- عنصر 1: تصوير سينمائي -->
-            <div class="gallery-card item-media">
-                <img src="photo1.jpg" alt="تصوير سينمائي" onerror="this.src='https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=800'">
-                <div class="gallery-info">
-                    <span class="category-tag">تصوير وبورتريه</span>
-                    <h3>جلسة تصوير احترافية</h3>
-                    <p>تصوير ميداني باستغلال الإضاءات الطبيعية مع تعديل ألوان سينمائي (Color Grading).</p>
-                </div>
-            </div>
 
-            <!-- عنصر 2: مونتاج فيديو سينمائي -->
+            <!-- 1. فيديو مونتاج إعلاني -->
             <div class="gallery-card item-media">
                 <video controls poster="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800">
                     <source src="video1.mp4" type="video/mp4">
-                    متصفحك لا يدعم فيديو HTML5.
                 </video>
                 <div class="gallery-info">
-                    <span class="category-tag">مونتاج وإخراج فيديو</span>
-                    <h3>إعلان سينمائي سريع</h3>
-                    <p>قص دقيق للمشاهد مع تأثيرات انتقالية وسيناريو إعلاني جذاب.</p>
+                    <span class="category-tag">🎬 مونتاج سينمائي</span>
+                    <h3>إعلان سينمائي ترويجي</h3>
+                    <p>قص سريع مع مؤثرات صوتية وتناسق إيقاعي جذاب.</p>
                 </div>
             </div>
 
-            <!-- عنصر 3: تصميم ديكور -->
-            <div class="gallery-card item-interiors">
-                <img src="decor1.jpg" alt="تصميم ديكور داخلي" onerror="this.src='https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800'">
+            <!-- 2. صورة بورتريه سينمائي -->
+            <div class="gallery-card item-media">
+                <img src="photo1.jpg" alt="تصوير بورتريه" onerror="this.src='https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=800'">
                 <div class="gallery-info">
-                    <span class="category-tag">ديكور وتصميم داخلي</span>
-                    <h3>تخطيط وتصميم مودرن 3D</h3>
-                    <p>استغلال ذكي للمساحات وتوزيع إضاءة هندسي يعطي شعوراً بالفخامة والاتساع.</p>
+                    <span class="category-tag">📷 تصوير فوتوغرافي</span>
+                    <h3>جلسة تصوير بورتريه سينمائي</h3>
+                    <p>تعديل ألوان احترافي (Color Grading) مع توزيع إضاءة خاص.</p>
                 </div>
             </div>
+
+            <!-- 3. فيديو مونتاج ريلز وتيك توك -->
+            <div class="gallery-card item-media">
+                <video controls poster="https://images.unsplash.com/photo-1536240478700-b869070f9279?w=800">
+                    <source src="video2.mp4" type="video/mp4">
+                </video>
+                <div class="gallery-info">
+                    <span class="category-tag">📱 مونتاج Reels & Shorts</span>
+                    <h3>محتوى قصير ديناميكي</h3>
+                    <p>مونتاج عمودي مصمم خصيصاً لجذب الانتباه في أول 3 ثوانٍ.</p>
+                </div>
+            </div>
+
+            <!-- 4. صورة ديكور صالة مودرن -->
+            <div class="gallery-card item-interiors">
+                <img src="decor1.jpg" alt="ديكور مودرن" onerror="this.src='https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800'">
+                <div class="gallery-info">
+                    <span class="category-tag">🏛️ تصميم ديكور 3D</span>
+                    <h3>تصميم صالة معيشة مودرن</h3>
+                    <p>استغلال ذكي للمساحات وإضاءات نيون دافئة.</p>
+                </div>
+            </div>
+
+            <!-- 5. صورة تصوير منتجات -->
+            <div class="gallery-card item-media">
+                <img src="photo2.jpg" alt="تصوير منتجات" onerror="this.src='https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=800'">
+                <div class="gallery-info">
+                    <span class="category-tag">📸 تصوير تجاري</span>
+                    <h3>تصوير منتجات احترافي</h3>
+                    <p>إبراز تفاصيل خامات المنتج والخلفيات السينمائية.</p>
+                </div>
+            </div>
+
+            <!-- 6. فيديو مونتاج كليب سينمائي -->
+            <div class="gallery-card item-media">
+                <video controls poster="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800">
+                    <source src="video3.mp4" type="video/mp4">
+                </video>
+                <div class="gallery-info">
+                    <span class="category-tag">🎥 مونتاج وإخراج</span>
+                    <h3>فيديو كليب سينمائي</h3>
+                    <p>دمج المشاهد السينمائية وتصحيح ألوان متقدم.</p>
+                </div>
+            </div>
+
+            <!-- 7. صورة ديكور غرفة نوم فاخرة -->
+            <div class="gallery-card item-interiors">
+                <img src="decor2.jpg" alt="ديكور غرفة نوم" onerror="this.src='https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800'">
+                <div class="gallery-info">
+                    <span class="category-tag">🏛️ تصميم ديكور</span>
+                    <h3>تصميم غرفة نوم سينمائية</h3>
+                    <p>تناسق الألوان الداكنة والخشب الطبيعي لحس فندقي راقٍ.</p>
+                </div>
+            </div>
+
+            <!-- 8. صورة تغطية فعاليات ومؤتمرات -->
+            <div class="gallery-card item-media">
+                <img src="photo3.jpg" alt="تغطية فعاليات" onerror="this.src='https://images.unsplash.com/photo-1511578314322-379afb476865?w=800'">
+                <div class="gallery-info">
+                    <span class="category-tag">📷 تغطية ميدانية</span>
+                    <h3>تغطية الفعاليات والمؤتمرات</h3>
+                    <p>توثيق الحفلات والمناسبات باللحظات التلقائية والاحترافية.</p>
+                </div>
+            </div>
+
+            <!-- 9. صورة ديكور مطبخ مودرن -->
+            <div class="gallery-card item-interiors">
+                <img src="decor3.jpg" alt="ديكور مطبخ" onerror="this.src='https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800'">
+                <div class="gallery-info">
+                    <span class="category-tag">🏛️ تصميم داخلي</span>
+                    <h3>تصميم مطبخ عصري</h3>
+                    <p>تخطيط متكامل لسهولة الحركة وتصميم أنيق وحديث.</p>
+                </div>
+            </div>
+
+            <!-- 10. صورة تصوير خارجي الطبيعة والمعالم -->
+            <div class="gallery-card item-media">
+                <img src="photo4.jpg" alt="تصوير خارجي" onerror="this.src='https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800'">
+                <div class="gallery-info">
+                    <span class="category-tag">📸 تصوير خارجي</span>
+                    <h3>لاند سكيب وتصوير خارجي</h3>
+                    <p>إبراز معالم المكان وزوايا سينمائية مبتكرة.</p>
+                </div>
+            </div>
+
         </div>
 
-        <!-- صندوق التواصل المباشر بالواتساب -->
+        <!-- زر التواصل المباشر في النهاية بدون إظهار أرقام -->
         <div class="contact-box">
             <h3>جاهز لبدء مشروعك القادم؟ 🚀</h3>
-            <p>تواصل معي مباشرة بدون تعقيد واستفسر عن كافة خدمات التصوير أو الديكور.</p>
-            <a href="https://wa.me/201015130014?text=أهلاً%20أحمد،%20شفت%20معرض%20أعمالك%20وعايز%20استفسر%20عن%20تفاصيل%20مشروع" target="_blank" class="btn-whatsapp">
-                💬 مراسلة فورية عبر الواتساب
+            <p>تواصل معي مباشرة وسأنفذ لك رؤيتك في التصوير، المونتاج، أو الديكور بأعلى جودة.</p>
+            <a href="https://wa.me/201015130014?text=أهلاً%20أحمد،%20شاهدت%20معرض%20أعمالك%20وأرغب%20في%20حجز%20مشروع" target="_blank" class="btn-whatsapp">
+                💬 مراسلة فورية عبر الواتساب (تواصل مباشر)
             </a>
         </div>
 
@@ -309,15 +377,13 @@
         </footer>
     </div>
 
-    <!-- كود الفلترة التفاعلي -->
+    <!-- كود الفلترة -->
     <script>
-        function filterGallery(category) {
-            // تحديث حالة الأزرار
+        function filterGallery(category, btn) {
             const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-            // إخفاء/إظهار العناصر
             const mediaItems = document.querySelectorAll('.item-media');
             const interiorItems = document.querySelectorAll('.item-interiors');
 

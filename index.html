@@ -7,14 +7,13 @@
     <!-- استدعاء خط Cairo الاحترافي -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #08080a;
             --card-bg: #121216;
             --card-border: #22222a;
             --accent-red: #e50914;
-            --accent-glow: rgba(229, 9, 20, 0.4);
             --text-main: #ffffff;
             --text-muted: #9ea0a6;
             --whatsapp-green: #25d366;
@@ -32,8 +31,7 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.7;
-            padding: 20px 15px;
-            overflow-x: hidden;
+            padding: 15px;
         }
 
         .container {
@@ -41,68 +39,41 @@
             margin: 0 auto;
         }
 
-        /* الهيدر السينمائي */
+        /* الهيدر السينمائي الفاخر */
         header {
             text-align: center;
-            padding: 40px 20px 25px;
-            background: linear-gradient(180deg, rgba(229, 9, 20, 0.12) 0%, rgba(8, 8, 10, 0) 100%);
+            padding: 35px 20px;
+            background: linear-gradient(180deg, rgba(229, 9, 20, 0.15) 0%, rgba(8, 8, 10, 0) 100%);
             border-radius: 20px;
-            border: 1px solid rgba(229, 9, 20, 0.15);
+            border: 1px solid rgba(229, 9, 20, 0.2);
             margin-bottom: 25px;
-            position: relative;
         }
 
         .badge {
             display: inline-block;
-            background: rgba(229, 9, 20, 0.15);
+            background: rgba(229, 9, 20, 0.2);
             color: var(--accent-red);
             border: 1px solid var(--accent-red);
             padding: 4px 14px;
             border-radius: 50px;
             font-size: 0.85rem;
             font-weight: 700;
-            margin-bottom: 15px;
-            letter-spacing: 0.5px;
+            margin-bottom: 12px;
         }
 
         header h1 {
-            font-size: 2.4rem;
+            font-size: 2.2rem;
             font-weight: 900;
-            color: var(--text-main);
-            letter-spacing: -0.5px;
             margin-bottom: 5px;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
         }
 
         header p {
             color: var(--text-muted);
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 600;
         }
 
-        /* بطاقة النبذة التعريفية */
-        .bio-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 22px;
-            text-align: center;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .bio-card p {
-            color: #d1d2d6;
-            font-size: 1rem;
-            font-weight: 400;
-        }
-
-        .bio-card strong {
-            color: var(--accent-red);
-            font-weight: 700;
-        }
-
-        /* عنوان الأقسام */
+        /* عناوين الأقسام */
         .section-header {
             display: flex;
             align-items: center;
@@ -113,112 +84,80 @@
         }
 
         .section-header h2 {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 800;
-            color: var(--text-main);
         }
 
         .section-header span {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--accent-red);
             font-weight: 700;
         }
 
-        /* كروت الخدمات والشغل */
-        .services-grid {
+        /* شبكة عرض الصور والفيديوهات */
+        .media-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 15px;
-            margin-bottom: 30px;
+            gap: 20px;
+            margin-bottom: 25px;
         }
 
-        .service-card {
+        .media-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 16px;
-            padding: 20px;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-            position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         }
 
-        .service-card:active {
-            transform: scale(0.98);
+        .media-card img, .media-card video {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            display: block;
+            background: #000;
         }
 
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--accent-red);
+        .media-body {
+            padding: 16px;
         }
 
-        .service-card h3 {
-            font-size: 1.15rem;
+        .media-body h3 {
+            font-size: 1.1rem;
             font-weight: 700;
             margin-bottom: 6px;
-            color: var(--text-main);
         }
 
-        .service-card p {
-            font-size: 0.92rem;
+        .media-body p {
+            font-size: 0.88rem;
             color: var(--text-muted);
-            line-height: 1.6;
         }
 
-        /* أزرار التواصل والتفاعل */
-        .social-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        .btn {
+        /* زر التواصل السريع */
+        .btn-whatsapp {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
+            background: var(--whatsapp-green);
+            color: #ffffff;
             padding: 16px;
             border-radius: 14px;
             font-size: 1.05rem;
             font-weight: 700;
             text-decoration: none;
-            transition: all 0.2s ease;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .btn-whatsapp {
-            background: var(--whatsapp-green);
-            color: #ffffff;
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.25);
+            margin-top: 30px;
+            text-align: center;
         }
 
-        .btn-instagram {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            color: #ffffff;
-            box-shadow: 0 6px 20px rgba(220, 39, 67, 0.25);
-        }
-
-        .btn-tiktok {
-            background: #111111;
-            color: #ffffff;
-            border: 1px solid #333;
-        }
-
-        .btn:active {
-            transform: scale(0.97);
-            opacity: 0.9;
+        .btn-whatsapp:active {
+            transform: scale(0.98);
         }
 
         footer {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 35px;
             padding-top: 20px;
             border-top: 1px solid var(--card-border);
             color: var(--text-muted);
@@ -229,53 +168,62 @@
 <body>
 
     <div class="container">
-        <!-- الهيدر السينمائي -->
+        <!-- الهيدر -->
         <header>
-            <span class="badge">DARK CINEMA DESIGN</span>
+            <span class="badge">DARK CINEMA PORTFOLIO</span>
             <h1>أحمد فرج</h1>
-            <p>صانع محتوى بصري ومصمم ديكورات</p>
+            <p>تصوير سينمائي • مونتاج فيديو • تصميم ديكورات</p>
         </header>
 
-        <!-- نبذة شياكة -->
-        <div class="bio-card">
-            <p>نُحول الأفكار والمساحات إلى <strong>قصص سينمائية استثنائية</strong>. نمزج بين دقة تصاميم الديكور الداخلي واحترافية التصوير والمونتاج المرئي.</p>
-        </div>
-
-        <!-- مجالات العمل -->
+        <!-- معرض أعمال التصوير والمونتاج -->
         <div class="section-header">
-            <h2>تخصصاتنا والخدمات</h2>
-            <span>VISUAL SERVICES</span>
+            <h2>🎬 معرض التصوير والمونتاج</h2>
+            <span>MEDIA & EDITING</span>
         </div>
 
-        <div class="services-grid">
-            <div class="service-card">
-                <h3>🏛️ تصاميم الديكورات</h3>
-                <p>تخطيط وتصميم ديكورات مخصصة برؤية هندسية وفنية تناسب جميع المساحات مع الاهتمام بأدق التفاصيل.</p>
+        <div class="media-grid">
+            <!-- صورة من شغلك (استبدل الرابط برابط صورتك المرفوعة أو اسم ملفها) -->
+            <div class="media-card">
+                <img src="photo1.jpg" alt="تصوير احترافي" onerror="this.src='https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=700'">
+                <div class="media-body">
+                    <h3>جلسة تصوير سينمائية</h3>
+                    <p>تصوير ميداني وتعديل ألوان احترافي (Color Grading) لإبراز التفاصيل.</p>
+                </div>
             </div>
 
-            <div class="service-card">
-                <h3>🎬 التصوير السينمائي والمونتاج</h3>
-                <p>إنتاج فيديوهات احترافية وتعديل مرئي متقدم يعكس هوية مشروعاتك ويجذب جمهورك بشكل مباشر.</p>
+            <!-- فيديو من شغلك -->
+            <div class="media-card">
+                <video controls poster="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=700">
+                    <source src="video1.mp4" type="video/mp4">
+                    متصفحك لا يدعم تشغيل الفيديو.
+                </video>
+                <div class="media-body">
+                    <h3>مونتاج وإخراج إعلاني</h3>
+                    <p>قص دقيق، دمج مؤثرات صوتية، وتنسيق إيقاع المشاهد باحترافية عالية.</p>
+                </div>
             </div>
         </div>
 
-        <!-- أزرار التواصل المباشر (بدون ظهور أرقام) -->
+        <!-- معرض ديكورات -->
         <div class="section-header">
-            <h2>تواصل معي مباشرة</h2>
-            <span>GET IN TOUCH</span>
+            <h2>🏛️ معرض الديكور الداخلي</h2>
+            <span>INTERIOR DESIGN</span>
         </div>
 
-        <div class="social-container">
-            <a href="https://wa.me/201015130014" target="_blank" class="btn btn-whatsapp">
-                💬 مراسلة فورية عبر واتساب
-            </a>
-            <a href="https://instagram.com/ahmed_farag_s" target="_blank" class="btn btn-instagram">
-                📸 تابعني على إنستجرام
-            </a>
-            <a href="https://tiktok.com/@ahmad_farag1" target="_blank" class="btn btn-tiktok">
-                🎵 تابعني على تيك توك
-            </a>
+        <div class="media-grid">
+            <div class="media-card">
+                <img src="decor1.jpg" alt="تصميم ديكور" onerror="this.src='https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=700'">
+                <div class="media-body">
+                    <h3>تصميم مساحات وديكورات 3D</h3>
+                    <p>تخطيط هندسي وفني للمساحات برؤية عصرية ومبتكرة.</p>
+                </div>
+            </div>
         </div>
+
+        <!-- زر التواصل الفوري بالواتساب -->
+        <a href="https://wa.me/201015130014?text=أهلاً%20أحمد،%20شاهدت%20معرض%20أعمالك%20وأرغب%20في%20حجز%20خدمة" target="_blank" class="btn-whatsapp">
+            💬 تواصل معي واتساب مباشرة لحجز مشروعك
+        </a>
 
         <footer>
             <p>&copy; 2026 Ahmed Farag. جميع الحقوق محفوظة.</p>

@@ -1,604 +1,658 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0b0b0b">
-  <meta name="description" content="أحمد فرج - تصوير فوتوغرافي، تصوير فيديو، ومونتاج إبداعي. شاهد معرض الأعمال وتواصل لتنفيذ مشروعك.">
-  <title>أحمد فرج | تصوير ومونتاج</title>
-
+  <title>أحمد فرج | Ahmed Faraj - Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <style>
     :root {
-      --bg: #0b0b0b;
-      --panel: #141414;
-      --gold: #d7ad62;
-      --text: #f7f4ee;
-      --muted: #b6b1a8;
-      --border: rgba(215,173,98,.22);
+      --bg-dark: #0a0c10;
+      --bg-card: #121620;
+      --accent-neon: #00f2fe;
+      --accent-purple: #7928ca;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border-glow: rgba(0, 242, 254, 0.2);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+    }
 
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Cairo", sans-serif;
-      line-height: 1.8;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
       overflow-x: hidden;
+      line-height: 1.6;
     }
 
-    a { color: inherit; text-decoration: none; }
-    img, video { display: block; max-width: 100%; }
-    button { font: inherit; }
-
-    .container {
-      width: min(1120px, 90%);
-      margin-inline: auto;
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-purple);
+      border-radius: 4px;
     }
 
-    .gold { color: var(--gold); }
-
-    .section { padding: 85px 0; }
-
-    .section-heading {
-      text-align: center;
-      margin-bottom: 38px;
+    /* Background Ambient Lights */
+    .bg-glow-1 {
+      position: fixed;
+      top: -10%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(121,40,202,0.15) 0%, rgba(0,0,0,0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .bg-glow-2 {
+      position: fixed;
+      bottom: -10%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(0,242,254,0.15) 0%, rgba(0,0,0,0) 70%);
+      pointer-events: none;
+      z-index: 0;
     }
 
-    .section-heading span {
-      color: var(--gold);
-      font-size: 13px;
-      letter-spacing: 2px;
-    }
-
-    .section-heading h2 {
-      font-size: clamp(27px, 4vw, 40px);
-      margin: 8px 0;
-      line-height: 1.4;
-    }
-
-    .section-heading p {
-      color: var(--muted);
-      max-width: 600px;
-      margin: auto;
-      font-size: 14px;
-    }
-
-    /* شريط التنقل */
     header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(11,11,11,.93);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(14px);
-    }
-
-    .nav {
-      min-height: 76px;
+      background: rgba(10, 12, 16, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 1.2rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 20px;
     }
 
-    .brand {
-      font-size: 21px;
+    .logo {
       font-weight: 900;
-      white-space: nowrap;
+      font-size: 1.5rem;
+      background: linear-gradient(45deg, var(--accent-neon), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
     }
 
-    .brand span { color: var(--gold); }
-
-    .nav-links {
+    nav ul {
       display: flex;
-      align-items: center;
-      gap: 23px;
-      font-size: 13px;
-      color: var(--muted);
+      list-style: none;
+      gap: 2rem;
     }
 
-    .nav-links a:hover { color: var(--gold); }
-
-    .nav-cta {
-      padding: 9px 17px;
-      border: 1px solid var(--gold);
-      border-radius: 7px;
-      color: var(--gold);
-      font-size: 13px;
-      white-space: nowrap;
+    nav a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
     }
 
-    /* الواجهة الرئيسية */
+    nav a:hover {
+      color: var(--accent-neon);
+      text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+    }
+
+    /* Hero Section */
     .hero {
-      min-height: 590px;
-      display: flex;
-      align-items: center;
       position: relative;
-      isolation: isolate;
-      overflow: hidden;
-      background:
-        linear-gradient(90deg, rgba(11,11,11,.45), #0b0b0b 90%),
-        url("https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1800&q=85")
-        center/cover no-repeat;
+      z-index: 1;
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
     }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(0deg, var(--bg), transparent 35%);
-      z-index: -1;
-    }
-
-    .hero-content {
-      max-width: 690px;
-      padding: 75px 0 95px;
-    }
-
-    .eyebrow {
-      color: var(--gold);
-      font-size: 13px;
-      margin-bottom: 15px;
+    .hero-tag {
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid var(--accent-neon);
+      border-radius: 50px;
+      color: var(--accent-neon);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
     }
 
     .hero h1 {
-      font-size: clamp(36px, 6vw, 68px);
-      line-height: 1.35;
+      font-size: 3.2rem;
       font-weight: 900;
-      margin-bottom: 18px;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #00f2fe, #4facfe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .hero p {
-      color: #d2cec6;
-      max-width: 570px;
-      font-size: 16px;
-      margin-bottom: 28px;
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      margin-bottom: 2.5rem;
     }
 
-    .buttons {
+    .cta-buttons {
       display: flex;
-      gap: 12px;
+      justify-content: center;
+      gap: 1.2rem;
       flex-wrap: wrap;
     }
 
     .btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      padding: 12px 22px;
-      border-radius: 7px;
+      padding: 0.8rem 2rem;
+      border-radius: 8px;
       font-weight: 700;
-      font-size: 14px;
-      transition: .25s ease;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .btn-primary {
-      background: var(--gold);
-      color: #17120a;
+      background: linear-gradient(45deg, var(--accent-purple), var(--accent-neon));
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(121, 40, 202, 0.4);
     }
 
-    .btn-primary:hover { background: #edc77d; transform: translateY(-2px); }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(0, 242, 254, 0.6);
+    }
 
     .btn-outline {
-      border: 1px solid rgba(255,255,255,.35);
-      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.03);
     }
 
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-
-    /* نبذة عني */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      gap: 42px;
-      align-items: center;
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--text-main);
     }
 
-    .about-image {
-      min-height: 350px;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--panel);
+    /* Portfolio Section */
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
     }
 
-    .about-image img {
-      width: 100%;
-      height: 100%;
-      min-height: 350px;
-      object-fit: cover;
+    .section-title h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
     }
 
-    .about-text h3 {
-      font-size: 29px;
-      margin-bottom: 14px;
-    }
-
-    .about-text p {
-      color: var(--muted);
-      font-size: 15px;
-      margin-bottom: 17px;
-    }
-
-    .skills {
+    .filter-tabs {
       display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-bottom: 2.5rem;
       flex-wrap: wrap;
-      gap: 9px;
-      margin-top: 22px;
     }
 
-    .skill {
-      border: 1px solid var(--border);
-      color: var(--gold);
-      padding: 5px 12px;
+    .tab-btn {
+      padding: 0.5rem 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
       border-radius: 30px;
-      font-size: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
     }
 
-    /* معرض الصور */
-    .gallery {
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--accent-neon);
+      color: #000;
+      border-color: var(--accent-neon);
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+    }
+
+    .portfolio-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem 5rem;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 17px;
-    }
-
-    .work-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 10px;
-      background: var(--panel);
-      border: 1px solid #242424;
-    }
-
-    .work-card img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      transition: transform .45s ease;
-    }
-
-    .work-card:hover img { transform: scale(1.05); }
-
-    .work-caption {
-      padding: 14px;
-      color: var(--text);
-    }
-
-    .work-caption small {
-      color: var(--gold);
-      font-size: 11px;
-    }
-
-    .work-caption h3 { font-size: 16px; }
-
-    /* معرض الفيديوهات */
-    .videos {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
     }
 
     .video-card {
-      background: var(--panel);
-      border: 1px solid #292929;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .video-card video {
-      width: 100%;
-      aspect-ratio: 9 / 16;
-      object-fit: cover;
-      background: #050505;
-    }
-
-    .video-info { padding: 14px; }
-    .video-info h3 { font-size: 16px; }
-    .video-info p { color: var(--muted); font-size: 12px; }
-
-    /* الخدمات */
-    .services {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 17px;
-    }
-
-    .service {
-      padding: 27px 22px;
-      background: linear-gradient(145deg, #171717, #101010);
-      border: 1px solid var(--border);
+      background: var(--bg-card);
       border-radius: 12px;
-      transition: .25s ease;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
     }
 
-    .service:hover { transform: translateY(-5px); }
-
-    .service-icon {
-      font-size: 30px;
-      margin-bottom: 12px;
+    .video-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-neon);
+      box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);
     }
 
-    .service h3 { margin-bottom: 8px; font-size: 18px; }
-
-    .service p {
-      color: var(--muted);
-      font-size: 13px;
+    .card-thumbnail {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* التواصل */
-    .contact-box {
+    .card-thumbnail::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      transition: background 0.3s;
+    }
+
+    .video-card:hover .card-thumbnail::after {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .play-btn {
+      position: relative;
+      z-index: 2;
+      width: 50px;
+      height: 50px;
+      background: rgba(0, 242, 254, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-size: 1.2rem;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.6);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .video-card:hover .play-btn {
+      transform: scale(1.15);
+    }
+
+    .platform-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 2;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(5px);
+    }
+
+    .card-content {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .card-action {
+      text-decoration: none;
+      color: var(--accent-neon);
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* Modal Styling */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .modal-content {
+      background: var(--bg-card);
+      border-radius: 12px;
+      max-width: 800px;
+      width: 100%;
+      border: 1px solid var(--accent-neon);
+      padding: 2rem;
+      position: relative;
       text-align: center;
-      padding: 45px 25px;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      background: radial-gradient(ellipse at top, #302516, #141414 65%);
     }
 
-    .contact-box h2 {
-      font-size: clamp(26px, 4vw, 39px);
-      margin-bottom: 10px;
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
     }
 
-    .contact-box p {
-      color: var(--muted);
-      margin-bottom: 23px;
+    /* Contact Section */
+    .contact-section {
+      background: #0d1017;
+      padding: 5rem 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
     }
 
-    .contact-links {
+    .social-links {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .social-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-main);
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .social-icon:hover {
+      color: var(--accent-neon);
+      border-color: var(--accent-neon);
+      transform: translateY(-3px);
     }
 
     footer {
-      padding: 23px 0;
-      border-top: 1px solid #242424;
-      color: var(--muted);
       text-align: center;
-      font-size: 12px;
-    }
-
-    /* تحسين العرض على الهاتف */
-    @media (max-width: 800px) {
-      .nav { min-height: 68px; }
-      .nav-links { gap: 12px; }
-      .nav-links a { font-size: 11px; }
-      .nav-cta { display: none; }
-      .hero { min-height: 520px; }
-      .about-grid { grid-template-columns: 1fr; gap: 25px; }
-      .about-image { min-height: 260px; }
-      .about-image img { min-height: 260px; max-height: 400px; }
-      .gallery, .videos { grid-template-columns: repeat(2, 1fr); }
-      .work-card img { height: 240px; }
-      .services { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 480px) {
-      .container { width: 92%; }
-      .nav { flex-wrap: wrap; padding: 10px 0; }
-      .brand { font-size: 18px; }
-      .nav-links { width: 100%; justify-content: space-between; gap: 5px; }
-      .nav-links a { font-size: 11px; }
-      .hero { min-height: 480px; }
-      .hero-content { padding: 55px 0 75px; }
-      .hero p { font-size: 14px; }
-      .section { padding: 60px 0; }
-      .gallery, .videos { grid-template-columns: 1fr; }
-      .work-card img { height: 320px; }
-      .contact-box { padding: 32px 16px; }
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
   </style>
 </head>
-
 <body>
+
+  <div class="bg-glow-1"></div>
+  <div class="bg-glow-2"></div>
+
+  <!-- Header -->
   <header>
-    <div class="container nav">
-      <a class="brand" href="#home">AHMED <span>FARAG</span></a>
-
-      <nav class="nav-links" aria-label="القائمة الرئيسية">
-        <a href="#home">الرئيسية</a>
-        <a href="#about">من أنا</a>
-        <a href="#photos">الصور</a>
-        <a href="#videos">الفيديوهات</a>
-        <a href="#contact">تواصل</a>
-      </nav>
-
-      <a class="nav-cta" href="#contact">خلينا نشتغل سوا</a>
-    </div>
+    <div class="logo">AHMED FARAJ</div>
+    <nav>
+      <ul>
+        <li><a href="#about">من أنا</a></li>
+        <li><a href="#portfolio">الأعمال</a></li>
+        <li><a href="#contact">تواصل معي</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="container">
-        <div class="hero-content">
-          <div class="eyebrow">PHOTOGRAPHY · VIDEOGRAPHY · EDITING</div>
-          <h1>كل لحظة ليها حكاية،<br><span class="gold">وكل صورة ليها إحساس.</span></h1>
-          <p>
-            أنا أحمد فرج، مهتم بالتصوير وصناعة الفيديو والمونتاج.
-            بحب أحوّل الأفكار واللحظات لصور وفيديوهات تحكي قصة وتسيب أثر.
-          </p>
-          <div class="buttons">
-            <a class="btn btn-primary" href="#photos">شوف أعمالي</a>
-            <a class="btn btn-outline" href="#contact">تواصل معايا</a>
-          </div>
-        </div>
-      </div>
-    </section>
+  <!-- Hero Section -->
+  <section class="hero" id="about">
+    <div class="hero-tag">مونتير & صانع محتوى سينمائي 🎬</div>
+    <h1>أصنع من المشاهد <span>قصصاً تُحكى</span> وتترك أثراً</h1>
+    <p>مرحباً بك! أنا أحمد فرج، متخصص في مونتاج الفيديوهات، تصوير المشاهد السينمائية، والإخراج الإبداعي. أعمل على تحويل الأفكار إلى تجارب بصرية مبهرة.</p>
+    <div class="cta-buttons">
+      <a href="#portfolio" class="btn btn-primary"><i class="fas fa-play"></i> استكشف معرض الأعمال</a>
+      <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i> تواصل معي</a>
+    </div>
+  </section>
 
-    <section class="section" id="about">
-      <div class="container about-grid">
-        <div class="about-image">
-          <!-- استبدل الرابط بصورة حقيقية ليك أو من شغلك -->
-          <img
-            src="https://images.unsplash.com/photo-1502982720700-bfff97f2ecac?auto=format&fit=crop&w=900&q=85"
-            alt="كاميرا تصوير فوتوغرافي"
-            loading="lazy">
-        </div>
+  <!-- Portfolio Section -->
+  <section id="portfolio">
+    <div class="section-title">
+      <h2>معرض الأعمال والفيديوهات</h2>
+    </div>
 
-        <div class="about-text">
-          <div class="eyebrow">ABOUT ME</div>
-          <h3>مين هو <span class="gold">أحمد فرج؟</span></h3>
-          <p>
-            بحب التصوير والمونتاج وصناعة المحتوى البصري.
-            هدفي أقدّم شغل يجمع بين الفكرة الحلوة، والتفاصيل، والإحساس.
-          </p>
-          <p>
-            هنا هتلاقي نماذج من أعمال التصوير والفيديو والمونتاج،
-            ومع الوقت هضيف مشروعات جديدة من شغلي الحقيقي.
-          </p>
-          <div class="skills">
-            <span class="skill">تصوير فوتوغرافي</span>
-            <span class="skill">تصوير فيديو</span>
-            <span class="skill">مونتاج</span>
-            <span class="skill">صناعة محتوى</span>
-            <span class="skill">تعديل ألوان</span>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="filter-tabs">
+      <button class="tab-btn active" onclick="filterCategory('all', event)">كل الأعمال</button>
+      <button class="tab-btn" onclick="filterCategory('editing', event)">المونتاج والقصص</button>
+      <button class="tab-btn" onclick="filterCategory('cinematography', event)">تصوير وسينما</button>
+      <button class="tab-btn" onclick="filterCategory('reels', event)">ريلز ودعايات</button>
+      <button class="tab-btn" onclick="filterCategory('archive', event)">الأرشيف (2020)</button>
+    </div>
 
-    <section class="section" id="photos">
-      <div class="container">
-        <div class="section-heading">
-          <span>MY PHOTOGRAPHY</span>
-          <h2>معرض <span class="gold">الصور</span></h2>
-          <p>مجموعة من الصور اللي بتعكس رؤيتي واهتمامي بالتفاصيل.</p>
-        </div>
+    <div class="portfolio-container" id="portfolio-grid">
+      <!-- Cards populated via JS -->
+    </div>
+  </section>
 
-        <div class="gallery">
-          <!-- غيّر روابط الصور دي بصورك الحقيقية -->
-          <article class="work-card">
-            <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=800&q=85" alt="تصوير طبيعة" loading="lazy">
-            <div class="work-caption"><small>PHOTOGRAPHY</small><h3>تصوير الطبيعة</h3></div>
-          </article>
+  <!-- Modal View -->
+  <div class="modal" id="videoModal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <h3 id="modalTitle" style="margin-bottom: 1rem;"></h3>
+      <p id="modalDesc" style="color: var(--text-muted); margin-bottom: 1.5rem;"></p>
+      <a id="modalLink" href="#" target="_blank" class="btn btn-primary"><i class="fas fa-external-link-alt"></i> مشاهدة على المنصة الأصلية</a>
+    </div>
+  </div>
 
-          <article class="work-card">
-            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=85" alt="كاميرا تصوير" loading="lazy">
-            <div class="work-caption"><small>BEHIND THE SCENES</small><h3>عالم التصوير</h3></div>
-          </article>
-
-          <article class="work-card">
-            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=85" alt="تصوير سيارة" loading="lazy">
-            <div class="work-caption"><small>PRODUCT & AUTO</small><h3>تصوير المنتجات والسيارات</h3></div>
-          </article>
-
-          <article class="work-card">
-            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=85" alt="تصوير بورتريه" loading="lazy">
-            <div class="work-caption"><small>PORTRAIT</small><h3>تصوير الأشخاص</h3></div>
-          </article>
-
-          <article class="work-card">
-            <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=800&q=85" alt="منظر ليلي" loading="lazy">
-            <div class="work-caption"><small>CREATIVE SHOTS</small><h3>لقطات إبداعية</h3></div>
-          </article>
-
-          <article class="work-card">
-            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=85" alt="منظر طبيعي" loading="lazy">
-            <div class="work-caption"><small>VISUAL STORIES</small><h3>حكايات بالصورة</h3></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="videos">
-      <div class="container">
-        <div class="section-heading">
-          <span>VIDEO & EDITING</span>
-          <h2>معرض <span class="gold">الفيديوهات</span></h2>
-          <p>هنا هتظهر فيديوهاتك الحقيقية بعد رفعها للموقع.</p>
-        </div>
-
-        <div class="videos">
-          <article class="video-card">
-            <video controls playsinline preload="metadata" poster="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=600&q=80">
-              <source src="video1.mp4" type="video/mp4">
-              المتصفح لا يدعم تشغيل الفيديو.
-            </video>
-            <div class="video-info"><h3>فيديو رقم 1</h3><p>استبدل الملف بفيديو من أعمالك.</p></div>
-          </article>
-
-          <article class="video-card">
-            <video controls playsinline preload="metadata" poster="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=600&q=80">
-              <source src="video2.mp4" type="video/mp4">
-              المتصفح لا يدعم تشغيل الفيديو.
-            </video>
-            <div class="video-info"><h3>فيديو رقم 2</h3><p>استبدل الملف بفيديو من أعمالك.</p></div>
-          </article>
-
-          <article class="video-card">
-            <video controls playsinline preload="metadata" poster="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=600&q=80">
-              <source src="video3.mp4" type="video/mp4">
-              المتصفح لا يدعم تشغيل الفيديو.
-            </video>
-            <div class="video-info"><h3>فيديو رقم 3</h3><p>استبدل الملف بفيديو من أعمالك.</p></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="services">
-      <div class="container">
-        <div class="section-heading">
-          <span>WHAT I DO</span>
-          <h2>الخدمات <span class="gold">اللي بقدمها</span></h2>
-          <p>خدمات بصرية تساعدك تعرض فكرتك بشكل جذاب.</p>
-        </div>
-
-        <div class="services">
-          <article class="service">
-            <div class="service-icon">📸</div>
-            <h3>التصوير الفوتوغرافي</h3>
-            <p>صور للأشخاص والمنتجات واللحظات المهمة باهتمام بالتفاصيل.</p>
-          </article>
-
-          <article class="service">
-            <div class="service-icon">🎬</div>
-            <h3>تصوير الفيديو</h3>
-            <p>تصوير محتوى بصري مناسب للمشروعات وصفحات السوشيال ميديا.</p>
-          </article>
-
-          <article class="service">
-            <div class="service-icon">✂️</div>
-            <h3>المونتاج</h3>
-            <p>تجميع اللقطات وضبط الألوان والصوت وإخراج الفيديو بشكل متناسق.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="contact-box">
-          <div class="eyebrow">LET'S WORK TOGETHER</div>
-          <h2>عندك فكرة؟ <span class="gold">خلينا ننفذها.</span></h2>
-          <p>تواصل معايا واحكيلي عن مشروعك أو الشغل اللي محتاج تنفذه.</p>
-
-          <div class="contact-links">
-            <a class="btn btn-primary" href="https://wa.me/201015130014" target="_blank" rel="noopener">تواصل واتساب</a>
-            <a class="btn btn-outline" href="https://www.instagram.com/ahmed_farag_s/" target="_blank" rel="noopener">إنستجرام</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <h2>هل لديك مشروع قادم؟</h2>
+    <p style="color: var(--text-muted); margin-top: 0.5rem;">دعنا نعمل معا لتحويل أفكارك إلى فيديو احترافي.</p>
+    
+    <div class="social-links">
+      <a href="https://facebook.com" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+      <a href="https://youtube.com" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
+      <a href="https://wa.me/" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </section>
 
   <footer>
-    <div class="container">
-      <p>© <span id="year"></span> Ahmed Farag — جميع الحقوق محفوظة</p>
-    </div>
+    <p>© 2026 جميع الحقوق محفوظة - أحمد فرج Ahmed Faraj</p>
   </footer>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // قائمة الـ 11 فيديو كاملة ومحدثة
+    const videos = [
+      {
+        title: "بداية القصة - Reels",
+        category: "reels",
+        platform: "Instagram",
+        badgeColor: "#e1306c",
+        url: "https://www.instagram.com/reel/DekzxVuoSTL/?vrfl=YXVzbjV0czBkb3c4",
+        thumb: "https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=600&q=80",
+        desc: "فيديو ريلز استعراضي لمشروع مونتاج ومؤثرات بصيرة."
+      },
+      {
+        title: "تكملة الجزء الأول - Shorts",
+        category: "editing",
+        platform: "YouTube",
+        badgeColor: "#ff0000",
+        url: "https://youtube.com/shorts/9cKVq1NPiCU?si=3E6moESwUAeSiveK",
+        thumb: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=600&q=80",
+        desc: "فيديو شورتس يكمل أحداث السلسلة وإبراز تفاصيل القصص."
+      },
+      {
+        title: "التكملة الثالثة للقصة",
+        category: "editing",
+        platform: "Facebook",
+        badgeColor: "#1877f2",
+        url: "https://www.facebook.com/share/r/1CjTyiTXVV/?mibextid=wwXIfr",
+        thumb: "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?auto=format&fit=crop&w=600&q=80",
+        desc: "المقطع التكميلي لسلسلة التشويق والقصص."
+      },
+      {
+        title: "تصوير وإخراج خاص (تصويري)",
+        category: "cinematography",
+        platform: "Facebook",
+        badgeColor: "#1877f2",
+        url: "https://www.facebook.com/share/v/1cBNVMgzwg/?mibextid=wwXIfr",
+        thumb: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=600&q=80",
+        desc: "عرض مهارات الكاميرا والإضاءة والتحريك السينمائي."
+      },
+      {
+        title: "مشروع الأرشيف والمونتاج (2020)",
+        category: "archive",
+        platform: "Facebook",
+        badgeColor: "#1877f2",
+        url: "https://www.facebook.com/share/v/1brib1BJ1M/?mibextid=wwXIfr",
+        thumb: "https://images.unsplash.com/photo-1524712245354-2c4e5e7121c0?auto=format&fit=crop&w=600&q=80",
+        desc: "مشروع قديم من أعمال مونتاج عام 2020."
+      },
+      {
+        title: "مشروع فيديو فيسبوك Reel - 1",
+        category: "reels",
+        platform: "Facebook",
+        badgeColor: "#1877f2",
+        url: "https://www.facebook.com/share/r/1JkK6WUSiN/?mibextid=wwXIfr",
+        thumb: "https://images.unsplash.com/photo-1535016120720-40c646be5580?auto=format&fit=crop&w=600&q=80",
+        desc: "فيديو قصير بتنسيق ريلز وتعديلات ألوان مميزة."
+      },
+      {
+        title: "قصة واستعراض فيديو - 2",
+        category: "editing",
+        platform: "Facebook",
+        badgeColor: "#1877f2",
+        url: "https://m.facebook.com/story.php?story_fbid=pfbid0EBztzonuiTF87W2rYCH72CPwQ4kY3fb5ritce6pCR34Epbwac9vDa6NTFQ1u6gMSl&id=100074819678573&mibextid=wwXIfr",
+        thumb: "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?auto=format&fit=crop&w=600&q=80",
+        desc: "قصة مصورة تم إخراجها وتنسيق حركتها بالكامل."
+      },
+      {
+        title: "فيديو ريلز سينمائي - 3",
+        category: "reels",
+        platform: "Facebook",
+        badgeColor: "#1877f2",
+        url: "https://www.facebook.com/share/r/1DtHsHCsuC/?mibextid=wwXIfr",
+        thumb: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=600&q=80",
+        desc: "مونتاج سريع مع إيقاعات موسيقية متناسقة."
+      },
+      {
+        title: "مشروع فيديو كامل - 4",
+        category: "editing",
+        platform: "Facebook",
+        badgeColor: "#1877f2",
+        url: "https://www.facebook.com/share/v/1C4CXbyBnY/?mibextid=wwXIfr",
+        thumb: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=600&q=80",
+        desc: "عمل مونتاج شامل يتضمن السرد البصري وتحسين الصوت."
+      },
+      {
+        title: "إخراج وتصوير - 5",
+        category: "cinematography",
+        platform: "Facebook",
+        badgeColor: "#1877f2",
+        url: "https://www.facebook.com/share/v/19oBp5tp4t/?mibextid=wwXIfr",
+        thumb: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=600&q=80",
+        desc: "مشاهد مصورة بزوايا مميزة وإضاءة متناسقة."
+      },
+      {
+        title: "ريلز إبداعي - 6",
+        category: "reels",
+        platform: "Facebook",
+        badgeColor: "#1877f2",
+        url: "https://www.facebook.com/share/r/1KV7XWBszB/?mibextid=wwXIfr",
+        thumb: "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?auto=format&fit=crop&w=600&q=80",
+        desc: "مقطع ريلز مصمم لجذب الانتباه والتفاعل."
+      }
+    ];
+
+    function renderPortfolio(items) {
+      const grid = document.getElementById('portfolio-grid');
+      grid.innerHTML = '';
+
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'video-card';
+        card.innerHTML = `
+          <div class="card-thumbnail" style="background-image: url('${item.thumb}');">
+            <span class="platform-badge" style="color: ${item.badgeColor}">${item.platform}</span>
+            <div class="play-btn" onclick="openModal('${item.title}', '${item.desc}', '${item.url}')">
+              <i class="fas fa-play"></i>
+            </div>
+          </div>
+          <div class="card-content">
+            <div>
+              <div class="card-title">${item.title}</div>
+              <div class="card-desc">${item.desc}</div>
+            </div>
+            <a href="${item.url}" target="_blank" class="card-action">
+              <span>مشاهدة الفيديو</span>
+              <i class="fas fa-arrow-left"></i>
+            </a>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterCategory(cat, evt) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      if(evt && evt.target) {
+        evt.target.classList.add('active');
+      }
+
+      if (cat === 'all') {
+        renderPortfolio(videos);
+      } else {
+        const filtered = videos.filter(v => v.category === cat);
+        renderPortfolio(filtered);
+      }
+    }
+
+    function openModal(title, desc, url) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalDesc').innerText = desc;
+      document.getElementById('modalLink').href = url;
+      document.getElementById('videoModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('videoModal').style.display = 'none';
+    }
+
+    // التشغيل الأولي عند فتح الصفحة
+    renderPortfolio(videos);
   </script>
 </body>
 </html>

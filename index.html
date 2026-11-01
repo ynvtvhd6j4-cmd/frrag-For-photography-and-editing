@@ -1,658 +1,327 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>أحمد فرج | Ahmed Faraj - Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <style>
-    :root {
-      --bg-dark: #0a0c10;
-      --bg-card: #121620;
-      --accent-neon: #00f2fe;
-      --accent-purple: #7928ca;
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
-      --border-glow: rgba(0, 242, 254, 0.2);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Cairo', sans-serif;
-    }
-
-    body {
-      background-color: var(--bg-dark);
-      color: var(--text-main);
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
-
-    /* Scrollbar Styling */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--bg-dark);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--accent-purple);
-      border-radius: 4px;
-    }
-
-    /* Background Ambient Lights */
-    .bg-glow-1 {
-      position: fixed;
-      top: -10%;
-      right: -10%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(121,40,202,0.15) 0%, rgba(0,0,0,0) 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .bg-glow-2 {
-      position: fixed;
-      bottom: -10%;
-      left: -10%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(0,242,254,0.15) 0%, rgba(0,0,0,0) 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(10, 12, 16, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 1.2rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-weight: 900;
-      font-size: 1.5rem;
-      background: linear-gradient(45deg, var(--accent-neon), var(--accent-purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 1px;
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
-    }
-
-    nav a {
-      color: var(--text-main);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: all 0.3s ease;
-    }
-
-    nav a:hover {
-      color: var(--accent-neon);
-      text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
-    }
-
-    /* Hero Section */
-    .hero {
-      position: relative;
-      z-index: 1;
-      padding: 6rem 2rem 4rem;
-      text-align: center;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .hero-tag {
-      display: inline-block;
-      padding: 0.4rem 1.2rem;
-      background: rgba(0, 242, 254, 0.1);
-      border: 1px solid var(--accent-neon);
-      border-radius: 50px;
-      color: var(--accent-neon);
-      font-size: 0.85rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
-    }
-
-    .hero h1 {
-      font-size: 3.2rem;
-      font-weight: 900;
-      margin-bottom: 1rem;
-      line-height: 1.2;
-    }
-
-    .hero h1 span {
-      background: linear-gradient(90deg, #00f2fe, #4facfe);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero p {
-      color: var(--text-muted);
-      font-size: 1.2rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .cta-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1.2rem;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 0.8rem 2rem;
-      border-radius: 8px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .btn-primary {
-      background: linear-gradient(45deg, var(--accent-purple), var(--accent-neon));
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(121, 40, 202, 0.4);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 25px rgba(0, 242, 254, 0.6);
-    }
-
-    .btn-outline {
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: var(--text-main);
-      background: rgba(255, 255, 255, 0.03);
-    }
-
-    .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: var(--text-main);
-    }
-
-    /* Portfolio Section */
-    .section-title {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .section-title h2 {
-      font-size: 2.2rem;
-      font-weight: 800;
-    }
-
-    .filter-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 0.8rem;
-      margin-bottom: 2.5rem;
-      flex-wrap: wrap;
-    }
-
-    .tab-btn {
-      padding: 0.5rem 1.5rem;
-      background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      color: var(--text-muted);
-      border-radius: 30px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-
-    .tab-btn.active, .tab-btn:hover {
-      background: var(--accent-neon);
-      color: #000;
-      border-color: var(--accent-neon);
-      box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
-    }
-
-    .portfolio-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem 5rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 2rem;
-    }
-
-    .video-card {
-      background: var(--bg-card);
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      transition: all 0.3s ease;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .video-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--accent-neon);
-      box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);
-    }
-
-    .card-thumbnail {
-      position: relative;
-      width: 100%;
-      height: 200px;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .card-thumbnail::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.4);
-      transition: background 0.3s;
-    }
-
-    .video-card:hover .card-thumbnail::after {
-      background: rgba(0, 0, 0, 0.2);
-    }
-
-    .play-btn {
-      position: relative;
-      z-index: 2;
-      width: 50px;
-      height: 50px;
-      background: rgba(0, 242, 254, 0.9);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #000;
-      font-size: 1.2rem;
-      box-shadow: 0 0 20px rgba(0, 242, 254, 0.6);
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-
-    .video-card:hover .play-btn {
-      transform: scale(1.15);
-    }
-
-    .platform-badge {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      z-index: 2;
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(5px);
-    }
-
-    .card-content {
-      padding: 1.5rem;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .card-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    .card-desc {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .card-action {
-      text-decoration: none;
-      color: var(--accent-neon);
-      font-weight: 700;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    /* Modal Styling */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.9);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-
-    .modal-content {
-      background: var(--bg-card);
-      border-radius: 12px;
-      max-width: 800px;
-      width: 100%;
-      border: 1px solid var(--accent-neon);
-      padding: 2rem;
-      position: relative;
-      text-align: center;
-    }
-
-    .close-modal {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      color: #fff;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    /* Contact Section */
-    .contact-section {
-      background: #0d1017;
-      padding: 5rem 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      text-align: center;
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .social-icon {
-      width: 50px;
-      height: 50px;
-      background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-main);
-      font-size: 1.2rem;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .social-icon:hover {
-      color: var(--accent-neon);
-      border-color: var(--accent-neon);
-      transform: translateY(-3px);
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع هشام السيد - تحليل حساسات التربة</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f3f4f6;
+        }
+    </style>
 </head>
-<body>
+<body class="text-gray-800 antialiased min-h-screen flex flex-col">
 
-  <div class="bg-glow-1"></div>
-  <div class="bg-glow-2"></div>
-
-  <!-- Header -->
-  <header>
-    <div class="logo">AHMED FARAJ</div>
-    <nav>
-      <ul>
-        <li><a href="#about">من أنا</a></li>
-        <li><a href="#portfolio">الأعمال</a></li>
-        <li><a href="#contact">تواصل معي</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero" id="about">
-    <div class="hero-tag">مونتير & صانع محتوى سينمائي 🎬</div>
-    <h1>أصنع من المشاهد <span>قصصاً تُحكى</span> وتترك أثراً</h1>
-    <p>مرحباً بك! أنا أحمد فرج، متخصص في مونتاج الفيديوهات، تصوير المشاهد السينمائية، والإخراج الإبداعي. أعمل على تحويل الأفكار إلى تجارب بصرية مبهرة.</p>
-    <div class="cta-buttons">
-      <a href="#portfolio" class="btn btn-primary"><i class="fas fa-play"></i> استكشف معرض الأعمال</a>
-      <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i> تواصل معي</a>
-    </div>
-  </section>
-
-  <!-- Portfolio Section -->
-  <section id="portfolio">
-    <div class="section-title">
-      <h2>معرض الأعمال والفيديوهات</h2>
-    </div>
-
-    <div class="filter-tabs">
-      <button class="tab-btn active" onclick="filterCategory('all', event)">كل الأعمال</button>
-      <button class="tab-btn" onclick="filterCategory('editing', event)">المونتاج والقصص</button>
-      <button class="tab-btn" onclick="filterCategory('cinematography', event)">تصوير وسينما</button>
-      <button class="tab-btn" onclick="filterCategory('reels', event)">ريلز ودعايات</button>
-      <button class="tab-btn" onclick="filterCategory('archive', event)">الأرشيف (2020)</button>
-    </div>
-
-    <div class="portfolio-container" id="portfolio-grid">
-      <!-- Cards populated via JS -->
-    </div>
-  </section>
-
-  <!-- Modal View -->
-  <div class="modal" id="videoModal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModal()">&times;</span>
-      <h3 id="modalTitle" style="margin-bottom: 1rem;"></h3>
-      <p id="modalDesc" style="color: var(--text-muted); margin-bottom: 1.5rem;"></p>
-      <a id="modalLink" href="#" target="_blank" class="btn btn-primary"><i class="fas fa-external-link-alt"></i> مشاهدة على المنصة الأصلية</a>
-    </div>
-  </div>
-
-  <!-- Contact Section -->
-  <section class="contact-section" id="contact">
-    <h2>هل لديك مشروع قادم؟</h2>
-    <p style="color: var(--text-muted); margin-top: 0.5rem;">دعنا نعمل معا لتحويل أفكارك إلى فيديو احترافي.</p>
-    
-    <div class="social-links">
-      <a href="https://facebook.com" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-      <a href="https://youtube.com" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
-      <a href="https://wa.me/" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
-    </div>
-  </section>
-
-  <footer>
-    <p>© 2026 جميع الحقوق محفوظة - أحمد فرج Ahmed Faraj</p>
-  </footer>
-
-  <script>
-    // قائمة الـ 11 فيديو كاملة ومحدثة
-    const videos = [
-      {
-        title: "بداية القصة - Reels",
-        category: "reels",
-        platform: "Instagram",
-        badgeColor: "#e1306c",
-        url: "https://www.instagram.com/reel/DekzxVuoSTL/?vrfl=YXVzbjV0czBkb3c4",
-        thumb: "https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=600&q=80",
-        desc: "فيديو ريلز استعراضي لمشروع مونتاج ومؤثرات بصيرة."
-      },
-      {
-        title: "تكملة الجزء الأول - Shorts",
-        category: "editing",
-        platform: "YouTube",
-        badgeColor: "#ff0000",
-        url: "https://youtube.com/shorts/9cKVq1NPiCU?si=3E6moESwUAeSiveK",
-        thumb: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=600&q=80",
-        desc: "فيديو شورتس يكمل أحداث السلسلة وإبراز تفاصيل القصص."
-      },
-      {
-        title: "التكملة الثالثة للقصة",
-        category: "editing",
-        platform: "Facebook",
-        badgeColor: "#1877f2",
-        url: "https://www.facebook.com/share/r/1CjTyiTXVV/?mibextid=wwXIfr",
-        thumb: "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?auto=format&fit=crop&w=600&q=80",
-        desc: "المقطع التكميلي لسلسلة التشويق والقصص."
-      },
-      {
-        title: "تصوير وإخراج خاص (تصويري)",
-        category: "cinematography",
-        platform: "Facebook",
-        badgeColor: "#1877f2",
-        url: "https://www.facebook.com/share/v/1cBNVMgzwg/?mibextid=wwXIfr",
-        thumb: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=600&q=80",
-        desc: "عرض مهارات الكاميرا والإضاءة والتحريك السينمائي."
-      },
-      {
-        title: "مشروع الأرشيف والمونتاج (2020)",
-        category: "archive",
-        platform: "Facebook",
-        badgeColor: "#1877f2",
-        url: "https://www.facebook.com/share/v/1brib1BJ1M/?mibextid=wwXIfr",
-        thumb: "https://images.unsplash.com/photo-1524712245354-2c4e5e7121c0?auto=format&fit=crop&w=600&q=80",
-        desc: "مشروع قديم من أعمال مونتاج عام 2020."
-      },
-      {
-        title: "مشروع فيديو فيسبوك Reel - 1",
-        category: "reels",
-        platform: "Facebook",
-        badgeColor: "#1877f2",
-        url: "https://www.facebook.com/share/r/1JkK6WUSiN/?mibextid=wwXIfr",
-        thumb: "https://images.unsplash.com/photo-1535016120720-40c646be5580?auto=format&fit=crop&w=600&q=80",
-        desc: "فيديو قصير بتنسيق ريلز وتعديلات ألوان مميزة."
-      },
-      {
-        title: "قصة واستعراض فيديو - 2",
-        category: "editing",
-        platform: "Facebook",
-        badgeColor: "#1877f2",
-        url: "https://m.facebook.com/story.php?story_fbid=pfbid0EBztzonuiTF87W2rYCH72CPwQ4kY3fb5ritce6pCR34Epbwac9vDa6NTFQ1u6gMSl&id=100074819678573&mibextid=wwXIfr",
-        thumb: "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?auto=format&fit=crop&w=600&q=80",
-        desc: "قصة مصورة تم إخراجها وتنسيق حركتها بالكامل."
-      },
-      {
-        title: "فيديو ريلز سينمائي - 3",
-        category: "reels",
-        platform: "Facebook",
-        badgeColor: "#1877f2",
-        url: "https://www.facebook.com/share/r/1DtHsHCsuC/?mibextid=wwXIfr",
-        thumb: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=600&q=80",
-        desc: "مونتاج سريع مع إيقاعات موسيقية متناسقة."
-      },
-      {
-        title: "مشروع فيديو كامل - 4",
-        category: "editing",
-        platform: "Facebook",
-        badgeColor: "#1877f2",
-        url: "https://www.facebook.com/share/v/1C4CXbyBnY/?mibextid=wwXIfr",
-        thumb: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=600&q=80",
-        desc: "عمل مونتاج شامل يتضمن السرد البصري وتحسين الصوت."
-      },
-      {
-        title: "إخراج وتصوير - 5",
-        category: "cinematography",
-        platform: "Facebook",
-        badgeColor: "#1877f2",
-        url: "https://www.facebook.com/share/v/19oBp5tp4t/?mibextid=wwXIfr",
-        thumb: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=600&q=80",
-        desc: "مشاهد مصورة بزوايا مميزة وإضاءة متناسقة."
-      },
-      {
-        title: "ريلز إبداعي - 6",
-        category: "reels",
-        platform: "Facebook",
-        badgeColor: "#1877f2",
-        url: "https://www.facebook.com/share/r/1KV7XWBszB/?mibextid=wwXIfr",
-        thumb: "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?auto=format&fit=crop&w=600&q=80",
-        desc: "مقطع ريلز مصمم لجذب الانتباه والتفاعل."
-      }
-    ];
-
-    function renderPortfolio(items) {
-      const grid = document.getElementById('portfolio-grid');
-      grid.innerHTML = '';
-
-      items.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'video-card';
-        card.innerHTML = `
-          <div class="card-thumbnail" style="background-image: url('${item.thumb}');">
-            <span class="platform-badge" style="color: ${item.badgeColor}">${item.platform}</span>
-            <div class="play-btn" onclick="openModal('${item.title}', '${item.desc}', '${item.url}')">
-              <i class="fas fa-play"></i>
+    <!-- Navbar -->
+    <header class="bg-emerald-700 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <i class="fa-solid fa-seedling text-3xl text-emerald-300"></i>
+                <div>
+                    <h1 class="text-2xl font-bold tracking-wide">منصة هشام السيد</h1>
+                    <p class="text-xs text-emerald-200">لنظم تحليل حساسات التربة والري الذكي</p>
+                </div>
             </div>
-          </div>
-          <div class="card-content">
-            <div>
-              <div class="card-title">${item.title}</div>
-              <div class="card-desc">${item.desc}</div>
+            <div class="hidden md:flex items-center space-x-4 space-x-reverse text-sm font-medium">
+                <span class="bg-emerald-800 px-3 py-1 rounded-full border border-emerald-600">
+                    <i class="fa-solid fa-circle text-emerald-400 text-xs ml-1 animate-pulse"></i> الحساسات متصلة
+                </span>
             </div>
-            <a href="${item.url}" target="_blank" class="card-action">
-              <span>مشاهدة الفيديو</span>
-              <i class="fas fa-arrow-left"></i>
-            </a>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
+        </div>
+    </header>
 
-    function filterCategory(cat, evt) {
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-      if(evt && evt.target) {
-        evt.target.classList.add('active');
-      }
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
+        
+        <!-- Welcome Banner -->
+        <div class="bg-white rounded-2xl shadow-sm p-6 mb-8 border-r-8 border-emerald-600">
+            <h2 class="text-xl font-bold text-gray-800 mb-2">مرحباً بك في لوحة تحكم التربة الذكية</h2>
+            <p class="text-gray-600 text-sm">أدخل البيانات المقاسة بواسطة الحساسات أدناه لحساب نسبة رطوبة التربة، حجم المياه المخزنة، ومستوى الملوحة والموصلية الكهربائية بشكل دقيق.</p>
+        </div>
 
-      if (cat === 'all') {
-        renderPortfolio(videos);
-      } else {
-        const filtered = videos.filter(v => v.category === cat);
-        renderPortfolio(filtered);
-      }
-    }
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Left Panel: Inputs Form -->
+            <div class="lg:col-span-5 bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
+                <h3 class="text-lg font-bold text-gray-800 border-b pb-3 mb-5 flex items-center">
+                    <i class="fa-solid fa-sliders text-emerald-600 ml-2"></i> مدخلات بيانات الحساسات
+                </h3>
 
-    function openModal(title, desc, url) {
-      document.getElementById('modalTitle').innerText = title;
-      document.getElementById('modalDesc').innerText = desc;
-      document.getElementById('modalLink').href = url;
-      document.getElementById('videoModal').style.display = 'flex';
-    }
+                <form id="sensorForm" onsubmit="calculateSoilMetrics(event)" class="space-y-5">
+                    
+                    <!-- Soil Type -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">نوع التربة</label>
+                        <select id="soilType" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block p-2.5">
+                            <option value="sandy">تربة رملية (Sandy Soil)</option>
+                            <option value="clay" selected>تربة طينية (Clay Soil)</option>
+                            <option value="loamy">تربة صفراء / طميية (Loamy Soil)</option>
+                        </select>
+                    </div>
 
-    function closeModal() {
-      document.getElementById('videoModal').style.display = 'none';
-    }
+                    <!-- Moisture Percentage -->
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <label class="block text-sm font-medium text-gray-700">نسبة رطوبة التربة (%)</label>
+                            <span id="moistureVal" class="text-sm font-bold text-emerald-600">35%</span>
+                        </div>
+                        <input type="range" id="moistureInput" min="0" max="100" value="35" step="1" 
+                               oninput="document.getElementById('moistureVal').innerText = this.value + '%'"
+                               class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                        <div class="flex justify-between text-xs text-gray-400 mt-1">
+                            <span>جافة (0%)</span>
+                            <span>مشبعة (100%)</span>
+                        </div>
+                    </div>
 
-    // التشغيل الأولي عند فتح الصفحة
-    renderPortfolio(videos);
-  </script>
+                    <!-- Water Volume -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">كمية المياه المضافة أو المقاسة (لتر / متر مكعب)</label>
+                        <div class="relative">
+                            <input type="number" id="waterInput" value="15" min="0" max="500" step="0.5" required
+                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5 pl-10">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+                                <i class="fa-solid fa-droplet"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Salts (EC or PPM) -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">نسبة الأملاح / الموصلية (PPM)</label>
+                        <div class="relative">
+                            <input type="number" id="saltInput" value="850" min="0" max="10000" step="10" required
+                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5 pl-10">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+                                <i class="fa-solid fa-flask"></i>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">النطاق المثالي لأغلب النباتات: 500 - 1500 PPM</p>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" 
+                            class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl transition duration-200 flex items-center justify-center space-x-2 space-x-reverse shadow-md hover:shadow-lg">
+                        <i class="fa-solid fa-calculator"></i>
+                        <span>بدء التحليل وإظهار النتائج</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Right Panel: Dashboard & Results -->
+            <div class="lg:col-span-7 space-y-6">
+                
+                <!-- Status Cards Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    
+                    <!-- Card 1: Moisture -->
+                    <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col justify-between">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-gray-500 text-xs font-semibold">رطوبة التربة</span>
+                            <div class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+                                <i class="fa-solid fa-water"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 id="cardMoistureText" class="text-2xl font-extrabold text-gray-800">35%</h4>
+                            <span id="cardMoistureStatus" class="inline-block px-2 py-0.5 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-800 mt-2">معتدل</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Water Content -->
+                    <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col justify-between">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-gray-500 text-xs font-semibold">المياه المتاحة</span>
+                            <div class="w-8 h-8 rounded-full bg-cyan-50 flex items-center justify-center text-cyan-600">
+                                <i class="fa-solid fa-glass-water"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 id="cardWaterText" class="text-2xl font-extrabold text-gray-800">15 لتر</h4>
+                            <span id="cardWaterStatus" class="inline-block px-2 py-0.5 text-xs font-semibold rounded-full bg-cyan-100 text-cyan-800 mt-2">كافية حالياً</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Salinity -->
+                    <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col justify-between">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-gray-500 text-xs font-semibold">ملوحة التربة</span>
+                            <div class="w-8 h-8 rounded-full bg-amber-50 flex items-center justify-center text-amber-600">
+                                <i class="fa-solid fa-cubes-stacked"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 id="cardSaltsText" class="text-2xl font-extrabold text-gray-800">850 PPM</h4>
+                            <span id="cardSaltsStatus" class="inline-block px-2 py-0.5 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-800 mt-2">مثالي</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Analysis Chart Card -->
+                <div class="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
+                    <h3 class="text-md font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-chart-pie text-emerald-600 ml-2"></i> الرسم البياني لتوزيع المؤشرات
+                    </h3>
+                    <div class="relative h-64">
+                        <canvas id="soilChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recommendations Card -->
+                <div class="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
+                    <h3 class="text-md font-bold text-gray-800 mb-3 flex items-center">
+                        <i class="fa-solid fa-lightbulb text-amber-500 ml-2"></i> التوصيات الفنية الزراعية
+                    </h3>
+                    <div id="recommendationsContainer" class="p-4 rounded-xl bg-gray-50 border border-gray-200 text-sm text-gray-700 leading-relaxed">
+                        اضغط على "بدء التحليل" لمعاينة التوصيات بناءً على المدخلات.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t mt-12 py-6 text-center text-gray-500 text-sm">
+        <p>جميع الحقوق محفوظة &copy; 2026 - <span class="font-bold text-emerald-700">موقع هشام السيد</span> لنظم الري والتحليل الزراعي الذكي</p>
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        let soilChart = null;
+
+        // Initialize Chart on Load
+        window.onload = function() {
+            initChart();
+            calculateSoilMetrics();
+        };
+
+        function initChart() {
+            const ctx = document.getElementById('soilChart').getContext('2d');
+            soilChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['الرطوبة (%)', 'الأملاح (PPM / 10)', 'المياه (لتر)'],
+                    datasets: [{
+                        label: 'قراءات الحساسات',
+                        data: [35, 85, 15],
+                        backgroundColor: [
+                            'rgba(59, 130, 246, 0.7)',
+                            'rgba(245, 158, 11, 0.7)',
+                            'rgba(16, 185, 129, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgb(59, 130, 246)',
+                            'rgb(245, 158, 11)',
+                            'rgb(16, 185, 129)'
+                        ],
+                        borderWidth: 1.5,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        }
+
+        function calculateSoilMetrics(e) {
+            if (e) e.preventDefault();
+
+            // Read Inputs
+            const soilType = document.getElementById('soilType').value;
+            const moisture = parseFloat(document.getElementById('moistureInput').value);
+            const water = parseFloat(document.getElementById('waterInput').value);
+            const salts = parseFloat(document.getElementById('saltInput').value);
+
+            // 1. Update Cards Display Text
+            document.getElementById('cardMoistureText').innerText = moisture + '%';
+            document.getElementById('cardWaterText').innerText = water + ' لتر';
+            document.getElementById('cardSaltsText').innerText = salts + ' PPM';
+
+            // 2. Evaluate Status & Badges
+            let moistureStatus = "";
+            let moistureBadgeClass = "";
+            if (moisture < 20) {
+                moistureStatus = "جافة - تحتاج ري";
+                moistureBadgeClass = "bg-red-100 text-red-800";
+            } else if (moisture <= 60) {
+                moistureStatus = "مثالية ورطبة";
+                moistureBadgeClass = "bg-emerald-100 text-emerald-800";
+            } else {
+                moistureStatus = "زائدة / مشبعة";
+                moistureBadgeClass = "bg-amber-100 text-amber-800";
+            }
+            const moistureBadge = document.getElementById('cardMoistureStatus');
+            moistureBadge.innerText = moistureStatus;
+            moistureBadge.className = `inline-block px-2 py-0.5 text-xs font-semibold rounded-full ${moistureBadgeClass} mt-2`;
+
+            let saltStatus = "";
+            let saltBadgeClass = "";
+            if (salts < 400) {
+                saltStatus = "منخفضة (فقيرة)";
+                saltBadgeClass = "bg-blue-100 text-blue-800";
+            } else if (salts <= 1500) {
+                saltStatus = "متوازنة ومثالية";
+                saltBadgeClass = "bg-emerald-100 text-emerald-800";
+            } else {
+                saltStatus = "مرتفعة (خطر)";
+                saltBadgeClass = "bg-red-100 text-red-800";
+            }
+            const saltBadge = document.getElementById('cardSaltsStatus');
+            saltBadge.innerText = saltStatus;
+            saltBadge.className = `inline-block px-2 py-0.5 text-xs font-semibold rounded-full ${saltBadgeClass} mt-2`;
+
+            // 3. Generate Recommendations
+            let recHTML = "<ul class='space-y-2 list-disc list-inside'>";
+            
+            if (moisture < 20) {
+                recHTML += `<li class='text-red-600 font-semibold'>التربة تعاني من الجفاف. يوصى بتشغيل نظام الري فوراً واضافة حوالي ${Math.round(water * 1.5)} لتر.</li>`;
+            } else if (moisture > 60) {
+                recHTML += `<li class='text-amber-600 font-semibold'>نسبة التشبع مرتفعة. يرجى إيقاف الري لتجنب أعفان الجذور.</li>`;
+            } else {
+                recHTML += `<li class='text-emerald-700'>نسبة الرطوبة ممتازة ونظام الري يعمل بشكل كفء.</li>`;
+            }
+
+            if (salts > 1500) {
+                recHTML += `<li class='text-red-600 font-semibold'>ملوحة التربة عالية (${salts} PPM). يوصى بإجراء رية غسيل وإضافة أحماض الهيوميك لتخفيف الملوحة.</li>`;
+            } else if (salts < 400) {
+                recHTML += `<li class='text-blue-600'>الملوحة منخفضة. التربة تحتاج إلى إضافة برنامج تسميد متوازن (NPK).</li>`;
+            } else {
+                recHTML += `<li class='text-emerald-700'>تركيز المغذيات والأملاح في النطاق المثالي لنمو النبات.</li>`;
+            }
+
+            if (soilType === 'sandy') {
+                recHTML += `<li>ملاحظة: التربة الرملية تفقد المياه بسرعة، يُفضل تقليل كمية الري في المرة الواحدة وزيادة عدد المرات.</li>`;
+            } else if (soilType === 'clay') {
+                recHTML += `<li>ملاحظة: التربة الطينية تحتفظ بالماء لفترة طويلة، احرص على وجود الصرف الجيد.</li>`;
+            }
+
+            recHTML += "</ul>";
+            document.getElementById('recommendationsContainer').innerHTML = recHTML;
+
+            // 4. Update Chart Data
+            if (soilChart) {
+                soilChart.data.datasets[0].data = [moisture, salts / 10, water];
+                soilChart.update();
+            }
+        }
+    </script>
 </body>
 </html>

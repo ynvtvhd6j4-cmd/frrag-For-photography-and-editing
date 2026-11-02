@@ -1,327 +1,492 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقع هشام السيد - تحليل حساسات التربة</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background-color: #f3f4f6;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070b14">
+<meta name="description" content="AHMED FARAG - Professional Video Editor and Creative Visual Storyteller.">
+<title>AHMED FARAG | Video Editor</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --bg: #070b14;
+    --card: #101827;
+    --blue: #168cff;
+    --cyan: #00d4ff;
+    --text: #f4f7ff;
+    --muted: #9aa9bf;
+}
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.7;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+.container {
+    width: min(1100px, 90%);
+    margin: auto;
+}
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(7, 11, 20, 0.94);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(15px);
+}
+.nav {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+.logo {
+    font-size: 21px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+.logo span {
+    color: var(--blue);
+}
+nav {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+nav a {
+    color: var(--muted);
+    font-size: 13px;
+    transition: 0.3s;
+}
+nav a:hover {
+    color: var(--cyan);
+}
+.hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: var(--blue);
+    filter: blur(180px);
+    opacity: 0.2;
+    right: -100px;
+    top: 50px;
+    pointer-events: none;
+}
+.hero-content {
+    position: relative;
+    padding: 90px 0;
+}
+.badge {
+    display: inline-block;
+    color: var(--cyan);
+    border: 1px solid rgba(0,212,255,0.35);
+    background: rgba(0,212,255,0.07);
+    border-radius: 30px;
+    padding: 7px 16px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+}
+h1 {
+    font-size: clamp(42px, 8vw, 82px);
+    line-height: 1.08;
+    letter-spacing: -2px;
+    margin-bottom: 22px;
+}
+h1 span {
+    display: block;
+    color: var(--blue);
+    text-shadow: 0 0 35px rgba(22,140,255,0.25);
+}
+.hero p {
+    max-width: 590px;
+    color: var(--muted);
+    font-size: 17px;
+    margin-bottom: 30px;
+}
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 13px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.btn-primary {
+    background: linear-gradient(120deg, var(--blue), #0055ff);
+    color: white;
+    box-shadow: 0 8px 30px rgba(22,140,255,0.2);
+}
+.btn-secondary {
+    border: 1px solid #29384f;
+    background: #101827;
+}
+.btn:hover {
+    transform: translateY(-3px);
+}
+section {
+    padding: 85px 0;
+}
+.section-heading {
+    margin-bottom: 35px;
+}
+.eyebrow {
+    color: var(--cyan);
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+h2 {
+    font-size: clamp(29px, 5vw, 43px);
+    margin: 8px 0;
+}
+.section-heading p,
+.about-text {
+    color: var(--muted);
+}
+.projects {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+.project-card {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(145deg, #121e31, #0b111d);
+    border: 1px solid #1d2b40;
+    border-radius: 15px;
+    padding: 25px;
+    min-height: 205px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: 0.3s;
+}
+.project-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--blue);
+    box-shadow: 0 15px 40px rgba(0,100,255,0.1);
+}
+.project-number {
+    color: var(--blue);
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+.project-card h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+.project-card p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+.project-link {
+    color: var(--cyan);
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: auto;
+}
+.about-box {
+    background: linear-gradient(135deg, #101827, #0b1322);
+    border: 1px solid #1d2b40;
+    border-radius: 18px;
+    padding: clamp(25px, 5vw, 50px);
+}
+.services {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 30px;
+}
+.service {
+    background: var(--card);
+    border: 1px solid #1d2b40;
+    padding: 25px;
+    border-radius: 12px;
+}
+.service .icon {
+    font-size: 27px;
+    margin-bottom: 12px;
+}
+.service h3 {
+    margin-bottom: 8px;
+}
+.service p {
+    color: var(--muted);
+    font-size: 14px;
+}
+.contact-box {
+    text-align: center;
+    padding: 55px 25px;
+    border-radius: 20px;
+    border: 1px solid #1b385b;
+    background:
+        radial-gradient(ellipse at top, rgba(22,140,255,0.18), transparent 65%),
+        #0c1320;
+}
+.contact-box p {
+    color: var(--muted);
+    margin: 10px auto 25px;
+    max-width: 500px;
+}
+footer {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 25px 0;
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+}
+footer strong {
+    color: var(--blue);
+}
+@media (max-width: 800px) {
+    .projects {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .services {
+        grid-template-columns: 1fr;
+    }
+    .hero {
+        min-height: 70vh;
+    }
+}
+@media (max-width: 520px) {
+    .nav {
+        padding: 15px 0;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    nav {
+        gap: 15px;
+    }
+    .projects {
+        grid-template-columns: 1fr;
+    }
+    section {
+        padding: 60px 0;
+    }
+    .hero-content {
+        padding: 65px 0;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+        transition: none !important;
+    }
+}
+</style>
 </head>
-<body class="text-gray-800 antialiased min-h-screen flex flex-col">
-
-    <!-- Navbar -->
-    <header class="bg-emerald-700 text-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3 space-x-reverse">
-                <i class="fa-solid fa-seedling text-3xl text-emerald-300"></i>
-                <div>
-                    <h1 class="text-2xl font-bold tracking-wide">منصة هشام السيد</h1>
-                    <p class="text-xs text-emerald-200">لنظم تحليل حساسات التربة والري الذكي</p>
-                </div>
+<body>
+<header>
+    <div class="container nav">
+        <a href="#home" class="logo">AHMED <span>FARAG.</span></a>
+        <nav aria-label="Main navigation">
+            <a href="#home">Home</a>
+            <a href="#work">My Work</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+</header>
+<main>
+<section class="hero" id="home">
+    <div class="container hero-content">
+        <div class="badge">VIDEO EDITOR & CREATIVE ARTIST</div>
+        <h1>
+            AHMED
+            <span>FARAG.</span>
+        </h1>
+        <p>
+            Turning raw footage into powerful visual stories.
+            Creative video editing, cinematic visuals, and engaging
+            content designed to make every frame count.
+        </p>
+        <div class="buttons">
+            <a href="#work" class="btn btn-primary">Explore My Work ↗</a>
+            <a href="#contact" class="btn btn-secondary">Let's Work Together</a>
+        </div>
+    </div>
+</section>
+<section id="work">
+    <div class="container">
+        <div class="section-heading">
+            <div class="eyebrow">Selected Projects</div>
+            <h2>My Creative Work</h2>
+            <p>A selection of my video editing projects across different platforms.</p>
+        </div>
+        <div class="projects">
+            <a class="project-card" href="https://www.instagram.com/reel/De1y310I-xt/?srtk=MWpmbWd3OTZvd3Rzeg==" target="_blank" rel="noopener noreferrer">
+                <div class="project-number">PROJECT 01</div>
+                <h3>Instagram Reel</h3>
+                <p>Short-form video editing and visual storytelling.</p>
+                <span class="project-link">Watch Project ↗</span>
+            </a>
+            <a class="project-card" href="https://www.instagram.com/reel/DduZlnchEoS/?obrf=ZXl6YmJtaHRuODlk" target="_blank" rel="noopener noreferrer">
+                <div class="project-number">PROJECT 02</div>
+                <h3>Instagram Reel</h3>
+                <p>Creative cuts and engaging social media content.</p>
+                <span class="project-link">Watch Project ↗</span>
+            </a>
+            <a class="project-card" href="https://www.instagram.com/reel/DdcgO_wsjxO/?srtk=YXh" target="_blank" rel="noopener noreferrer">
+                <div class="project-number">PROJECT 03</div>
+                <h3>Instagram Reel</h3>
+                <p>Dynamic editing for a modern audience.</p>
+                <span class="project-link">Watch Project ↗</span>
+            </a>
+            <a class="project-card" href="https://www.instagram.com/reel/DdSEoUYscQq/?vrfl=azlxOTV2ZG1raWN5" target="_blank" rel="noopener noreferrer">
+                <div class="project-number">PROJECT 04</div>
+                <h3>Instagram Reel</h3>
+                <p>Rhythm, pacing, and polished transitions.</p>
+                <span class="project-link">Watch Project ↗</span>
+            </a>
+            <a class="project-card" href="https://www.instagram.com/reel/DdKcmmkMrsV/?rpxt=MWZyNmpqZWpoNzFmZw==" target="_blank" rel="noopener noreferrer">
+                <div class="project-number">PROJECT 05</div>
+                <h3>Instagram Reel</h3>
+                <p>Visual storytelling with attention to detail.</p>
+                <span class="project-link">Watch Project ↗</span>
+            </a>
+            <a class="project-card" href="https://www.instagram.com/reel/DYUs93WMzhf/?dlrf=MWJ6NnJtYnZvMXBiZQ==" target="_blank" rel="noopener noreferrer">
+                <div class="project-number">PROJECT 06</div>
+                <h3>Instagram Reel</h3>
+                <p>Creative content made to stand out.</p>
+                <span class="project-link">Watch Project ↗</span>
+            </a>
+            <a class="project-card" href="https://www.facebook.com/share/v/19NrQw7ccV/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+                <div class="project-number">PROJECT 07</div>
+                <h3>Facebook Video</h3>
+                <p>Social media video production and editing.</p>
+                <span class="project-link">Watch Project ↗</span>
+            </a>
+            <a class="project-card" href="https://www.facebook.com/share/v/1E1dBSa2Rc/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+                <div class="project-number">PROJECT 08</div>
+                <h3>Facebook Video</h3>
+                <p>Content crafted to capture attention.</p>
+                <span class="project-link">Watch Project ↗</span>
+            </a>
+            <a class="project-card" href="https://youtube.com/shorts/9cKVq1NPiCU?si=igsIOtYLzvVF6gMV" target="_blank" rel="noopener noreferrer">
+                <div class="project-number">PROJECT 09</div>
+                <h3>YouTube Short</h3>
+                <p>Fast-paced editing for short-form video.</p>
+                <span class="project-link">Watch Project ↗</span>
+            </a>
+            <a class="project-card" href="https://youtube.com/shorts/iySjhrNKVE8?si=8S6qImMBUcIGOBJd" target="_blank" rel="noopener noreferrer">
+                <div class="project-number">PROJECT 10</div>
+                <h3>YouTube Short</h3>
+                <p>Engaging visuals with a clean finish.</p>
+                <span class="project-link">Watch Project ↗</span>
+            </a>
+            <a class="project-card" href="https://youtube.com/shorts/_uOPO-DbXRc?si=7ovcJ14Is8dGWqLS" target="_blank" rel="noopener noreferrer">
+                <div class="project-number">PROJECT 11</div>
+                <h3>YouTube Short</h3>
+                <p>Another project from my video portfolio.</p>
+                <span class="project-link">Watch Project ↗</span>
+            </a>
+        </div>
+    </div>
+</section>
+<section id="about">
+    <div class="container">
+        <div class="about-box">
+            <div class="eyebrow">About Me</div>
+            <h2>Creativity Meets Precision.</h2>
+            <p class="about-text">
+                I'm Ahmed Farag, a video editor passionate about transforming
+                ideas into compelling visual experiences. I focus on pacing,
+                storytelling, sound, and visual details to help every project
+                communicate its message effectively.
+            </p>
+        </div>
+    </div>
+</section>
+<section id="services">
+    <div class="container">
+        <div class="section-heading">
+            <div class="eyebrow">What I Do</div>
+            <h2>My Services</h2>
+            <p>Creative solutions for content creators, brands, and businesses.</p>
+        </div>
+        <div class="services">
+            <div class="service">
+                <div class="icon">🎬</div>
+                <h3>Video Editing</h3>
+                <p>Professional editing, clean cuts, and engaging storytelling.</p>
             </div>
-            <div class="hidden md:flex items-center space-x-4 space-x-reverse text-sm font-medium">
-                <span class="bg-emerald-800 px-3 py-1 rounded-full border border-emerald-600">
-                    <i class="fa-solid fa-circle text-emerald-400 text-xs ml-1 animate-pulse"></i> الحساسات متصلة
-                </span>
+            <div class="service">
+                <div class="icon">⚡</div>
+                <h3>Reels & Shorts</h3>
+                <p>Short-form content designed for Instagram, Facebook, and YouTube.</p>
+            </div>
+            <div class="service">
+                <div class="icon">🎨</div>
+                <h3>Visual Enhancement</h3>
+                <p>Color correction, sound refinement, and polished visuals.</p>
             </div>
         </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
-        
-        <!-- Welcome Banner -->
-        <div class="bg-white rounded-2xl shadow-sm p-6 mb-8 border-r-8 border-emerald-600">
-            <h2 class="text-xl font-bold text-gray-800 mb-2">مرحباً بك في لوحة تحكم التربة الذكية</h2>
-            <p class="text-gray-600 text-sm">أدخل البيانات المقاسة بواسطة الحساسات أدناه لحساب نسبة رطوبة التربة، حجم المياه المخزنة، ومستوى الملوحة والموصلية الكهربائية بشكل دقيق.</p>
+    </div>
+</section>
+<section id="contact">
+    <div class="container">
+        <div class="contact-box">
+            <div class="eyebrow">Have a Project?</div>
+            <h2>Let's Create Something Great.</h2>
+            <p>
+                Have an idea in mind? Contact me and let's turn your vision
+                into a powerful video.
+            </p>
+            <a
+                class="btn btn-primary"
+                href="https://wa.me/201015130014"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Contact Me on WhatsApp ↗
+            </a>
         </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            
-            <!-- Left Panel: Inputs Form -->
-            <div class="lg:col-span-5 bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
-                <h3 class="text-lg font-bold text-gray-800 border-b pb-3 mb-5 flex items-center">
-                    <i class="fa-solid fa-sliders text-emerald-600 ml-2"></i> مدخلات بيانات الحساسات
-                </h3>
-
-                <form id="sensorForm" onsubmit="calculateSoilMetrics(event)" class="space-y-5">
-                    
-                    <!-- Soil Type -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">نوع التربة</label>
-                        <select id="soilType" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block p-2.5">
-                            <option value="sandy">تربة رملية (Sandy Soil)</option>
-                            <option value="clay" selected>تربة طينية (Clay Soil)</option>
-                            <option value="loamy">تربة صفراء / طميية (Loamy Soil)</option>
-                        </select>
-                    </div>
-
-                    <!-- Moisture Percentage -->
-                    <div>
-                        <div class="flex justify-between items-center mb-1">
-                            <label class="block text-sm font-medium text-gray-700">نسبة رطوبة التربة (%)</label>
-                            <span id="moistureVal" class="text-sm font-bold text-emerald-600">35%</span>
-                        </div>
-                        <input type="range" id="moistureInput" min="0" max="100" value="35" step="1" 
-                               oninput="document.getElementById('moistureVal').innerText = this.value + '%'"
-                               class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
-                        <div class="flex justify-between text-xs text-gray-400 mt-1">
-                            <span>جافة (0%)</span>
-                            <span>مشبعة (100%)</span>
-                        </div>
-                    </div>
-
-                    <!-- Water Volume -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">كمية المياه المضافة أو المقاسة (لتر / متر مكعب)</label>
-                        <div class="relative">
-                            <input type="number" id="waterInput" value="15" min="0" max="500" step="0.5" required
-                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5 pl-10">
-                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
-                                <i class="fa-solid fa-droplet"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Salts (EC or PPM) -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">نسبة الأملاح / الموصلية (PPM)</label>
-                        <div class="relative">
-                            <input type="number" id="saltInput" value="850" min="0" max="10000" step="10" required
-                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5 pl-10">
-                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
-                                <i class="fa-solid fa-flask"></i>
-                            </div>
-                        </div>
-                        <p class="text-xs text-gray-500 mt-1">النطاق المثالي لأغلب النباتات: 500 - 1500 PPM</p>
-                    </div>
-
-                    <!-- Submit Button -->
-                    <button type="submit" 
-                            class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl transition duration-200 flex items-center justify-center space-x-2 space-x-reverse shadow-md hover:shadow-lg">
-                        <i class="fa-solid fa-calculator"></i>
-                        <span>بدء التحليل وإظهار النتائج</span>
-                    </button>
-                </form>
-            </div>
-
-            <!-- Right Panel: Dashboard & Results -->
-            <div class="lg:col-span-7 space-y-6">
-                
-                <!-- Status Cards Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    
-                    <!-- Card 1: Moisture -->
-                    <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col justify-between">
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-gray-500 text-xs font-semibold">رطوبة التربة</span>
-                            <div class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
-                                <i class="fa-solid fa-water"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 id="cardMoistureText" class="text-2xl font-extrabold text-gray-800">35%</h4>
-                            <span id="cardMoistureStatus" class="inline-block px-2 py-0.5 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-800 mt-2">معتدل</span>
-                        </div>
-                    </div>
-
-                    <!-- Card 2: Water Content -->
-                    <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col justify-between">
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-gray-500 text-xs font-semibold">المياه المتاحة</span>
-                            <div class="w-8 h-8 rounded-full bg-cyan-50 flex items-center justify-center text-cyan-600">
-                                <i class="fa-solid fa-glass-water"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 id="cardWaterText" class="text-2xl font-extrabold text-gray-800">15 لتر</h4>
-                            <span id="cardWaterStatus" class="inline-block px-2 py-0.5 text-xs font-semibold rounded-full bg-cyan-100 text-cyan-800 mt-2">كافية حالياً</span>
-                        </div>
-                    </div>
-
-                    <!-- Card 3: Salinity -->
-                    <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col justify-between">
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-gray-500 text-xs font-semibold">ملوحة التربة</span>
-                            <div class="w-8 h-8 rounded-full bg-amber-50 flex items-center justify-center text-amber-600">
-                                <i class="fa-solid fa-cubes-stacked"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 id="cardSaltsText" class="text-2xl font-extrabold text-gray-800">850 PPM</h4>
-                            <span id="cardSaltsStatus" class="inline-block px-2 py-0.5 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-800 mt-2">مثالي</span>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Analysis Chart Card -->
-                <div class="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
-                    <h3 class="text-md font-bold text-gray-800 mb-4 flex items-center">
-                        <i class="fa-solid fa-chart-pie text-emerald-600 ml-2"></i> الرسم البياني لتوزيع المؤشرات
-                    </h3>
-                    <div class="relative h-64">
-                        <canvas id="soilChart"></canvas>
-                    </div>
-                </div>
-
-                <!-- Recommendations Card -->
-                <div class="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
-                    <h3 class="text-md font-bold text-gray-800 mb-3 flex items-center">
-                        <i class="fa-solid fa-lightbulb text-amber-500 ml-2"></i> التوصيات الفنية الزراعية
-                    </h3>
-                    <div id="recommendationsContainer" class="p-4 rounded-xl bg-gray-50 border border-gray-200 text-sm text-gray-700 leading-relaxed">
-                        اضغط على "بدء التحليل" لمعاينة التوصيات بناءً على المدخلات.
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-white border-t mt-12 py-6 text-center text-gray-500 text-sm">
-        <p>جميع الحقوق محفوظة &copy; 2026 - <span class="font-bold text-emerald-700">موقع هشام السيد</span> لنظم الري والتحليل الزراعي الذكي</p>
-    </footer>
-
-    <!-- Logic Script -->
-    <script>
-        let soilChart = null;
-
-        // Initialize Chart on Load
-        window.onload = function() {
-            initChart();
-            calculateSoilMetrics();
-        };
-
-        function initChart() {
-            const ctx = document.getElementById('soilChart').getContext('2d');
-            soilChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['الرطوبة (%)', 'الأملاح (PPM / 10)', 'المياه (لتر)'],
-                    datasets: [{
-                        label: 'قراءات الحساسات',
-                        data: [35, 85, 15],
-                        backgroundColor: [
-                            'rgba(59, 130, 246, 0.7)',
-                            'rgba(245, 158, 11, 0.7)',
-                            'rgba(16, 185, 129, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgb(59, 130, 246)',
-                            'rgb(245, 158, 11)',
-                            'rgb(16, 185, 129)'
-                        ],
-                        borderWidth: 1.5,
-                        borderRadius: 8
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false }
-                    },
-                    scales: {
-                        y: { beginAtZero: true }
-                    }
-                }
-            });
-        }
-
-        function calculateSoilMetrics(e) {
-            if (e) e.preventDefault();
-
-            // Read Inputs
-            const soilType = document.getElementById('soilType').value;
-            const moisture = parseFloat(document.getElementById('moistureInput').value);
-            const water = parseFloat(document.getElementById('waterInput').value);
-            const salts = parseFloat(document.getElementById('saltInput').value);
-
-            // 1. Update Cards Display Text
-            document.getElementById('cardMoistureText').innerText = moisture + '%';
-            document.getElementById('cardWaterText').innerText = water + ' لتر';
-            document.getElementById('cardSaltsText').innerText = salts + ' PPM';
-
-            // 2. Evaluate Status & Badges
-            let moistureStatus = "";
-            let moistureBadgeClass = "";
-            if (moisture < 20) {
-                moistureStatus = "جافة - تحتاج ري";
-                moistureBadgeClass = "bg-red-100 text-red-800";
-            } else if (moisture <= 60) {
-                moistureStatus = "مثالية ورطبة";
-                moistureBadgeClass = "bg-emerald-100 text-emerald-800";
-            } else {
-                moistureStatus = "زائدة / مشبعة";
-                moistureBadgeClass = "bg-amber-100 text-amber-800";
-            }
-            const moistureBadge = document.getElementById('cardMoistureStatus');
-            moistureBadge.innerText = moistureStatus;
-            moistureBadge.className = `inline-block px-2 py-0.5 text-xs font-semibold rounded-full ${moistureBadgeClass} mt-2`;
-
-            let saltStatus = "";
-            let saltBadgeClass = "";
-            if (salts < 400) {
-                saltStatus = "منخفضة (فقيرة)";
-                saltBadgeClass = "bg-blue-100 text-blue-800";
-            } else if (salts <= 1500) {
-                saltStatus = "متوازنة ومثالية";
-                saltBadgeClass = "bg-emerald-100 text-emerald-800";
-            } else {
-                saltStatus = "مرتفعة (خطر)";
-                saltBadgeClass = "bg-red-100 text-red-800";
-            }
-            const saltBadge = document.getElementById('cardSaltsStatus');
-            saltBadge.innerText = saltStatus;
-            saltBadge.className = `inline-block px-2 py-0.5 text-xs font-semibold rounded-full ${saltBadgeClass} mt-2`;
-
-            // 3. Generate Recommendations
-            let recHTML = "<ul class='space-y-2 list-disc list-inside'>";
-            
-            if (moisture < 20) {
-                recHTML += `<li class='text-red-600 font-semibold'>التربة تعاني من الجفاف. يوصى بتشغيل نظام الري فوراً واضافة حوالي ${Math.round(water * 1.5)} لتر.</li>`;
-            } else if (moisture > 60) {
-                recHTML += `<li class='text-amber-600 font-semibold'>نسبة التشبع مرتفعة. يرجى إيقاف الري لتجنب أعفان الجذور.</li>`;
-            } else {
-                recHTML += `<li class='text-emerald-700'>نسبة الرطوبة ممتازة ونظام الري يعمل بشكل كفء.</li>`;
-            }
-
-            if (salts > 1500) {
-                recHTML += `<li class='text-red-600 font-semibold'>ملوحة التربة عالية (${salts} PPM). يوصى بإجراء رية غسيل وإضافة أحماض الهيوميك لتخفيف الملوحة.</li>`;
-            } else if (salts < 400) {
-                recHTML += `<li class='text-blue-600'>الملوحة منخفضة. التربة تحتاج إلى إضافة برنامج تسميد متوازن (NPK).</li>`;
-            } else {
-                recHTML += `<li class='text-emerald-700'>تركيز المغذيات والأملاح في النطاق المثالي لنمو النبات.</li>`;
-            }
-
-            if (soilType === 'sandy') {
-                recHTML += `<li>ملاحظة: التربة الرملية تفقد المياه بسرعة، يُفضل تقليل كمية الري في المرة الواحدة وزيادة عدد المرات.</li>`;
-            } else if (soilType === 'clay') {
-                recHTML += `<li>ملاحظة: التربة الطينية تحتفظ بالماء لفترة طويلة، احرص على وجود الصرف الجيد.</li>`;
-            }
-
-            recHTML += "</ul>";
-            document.getElementById('recommendationsContainer').innerHTML = recHTML;
-
-            // 4. Update Chart Data
-            if (soilChart) {
-                soilChart.data.datasets[0].data = [moisture, salts / 10, water];
-                soilChart.update();
-            }
-        }
-    </script>
+    </div>
+</section>
+</main>
+<footer>
+    <div class="container">
+        © <span id="year"></span> <strong>AHMED FARAG</strong>. All rights reserved.
+    </div>
+</footer>
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
